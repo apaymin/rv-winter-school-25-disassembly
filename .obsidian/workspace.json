@@ -93,12 +93,14 @@
             "id": "2cab17920155ed4d",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "Pasted image 20250205005950.png"
+                "file": "Промежуточные итоги/Странный код для SPI SD-карты.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "Pasted image 20250205005950"
+              "icon": "lucide-file",
+              "title": "Странный код для SPI SD-карты"
             }
           },
           {
@@ -265,10 +267,12 @@
   },
   "active": "2cab17920155ed4d",
   "lastOpenFiles": [
-    "Pasted image 20250205005918.png",
-    "Промежуточные итоги/Таблица памяти.md",
+    "Промежуточные итоги/Таблица памяти (общая).md",
+    "Промежуточные итоги/Инициализация (0x10000-0x10106).md",
     "Промежуточные итоги/Странный код для SPI SD-карты.md",
+    "Обсуждения/05.02 Созвон.md",
     "Pasted image 20250205005950.png",
+    "Pasted image 20250205005918.png",
     "Промежуточные итоги",
     "Материалы/RISC-V.md",
     "Материалы/Ghidra.md",
