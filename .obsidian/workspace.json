@@ -4,121 +4,39 @@
     "type": "split",
     "children": [
       {
-        "id": "d7a571066528118a",
+        "id": "cf01fd5550b1b773",
         "type": "tabs",
         "children": [
           {
-            "id": "990b3e026a1bcc40",
+            "id": "28cb89c197b3ca2a",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Welcome.md",
+                "file": "Промежуточные итоги/Таблица памяти (общая).md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Welcome"
+              "title": "Таблица памяти (общая)"
             }
           },
           {
-            "id": "08c3878e96e0db06",
+            "id": "0c5aac4414cae62b",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Вводная.md",
+                "file": "Промежуточные итоги/Main (0x10176-0x10225).md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Вводная"
-            }
-          },
-          {
-            "id": "d56a4ce9e7cb32a3",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.8.4"
-              },
-              "icon": "lucide-book-up",
-              "title": "Release Notes 1.8.4"
-            }
-          },
-          {
-            "id": "dc464f40cf497778",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Обсуждения/03.02 Итоги.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "03.02 Итоги"
-            }
-          },
-          {
-            "id": "d0938fcaf738fbf2",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Обсуждения/04.02.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "04.02"
-            }
-          },
-          {
-            "id": "6f1b7a0af349d902",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Промежуточные итоги/Странный код для SPI SD-карты.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Странный код для SPI SD-карты"
-            }
-          },
-          {
-            "id": "2cab17920155ed4d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Промежуточные итоги/Странный код для SPI SD-карты.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Странный код для SPI SD-карты"
-            }
-          },
-          {
-            "id": "dfdcfcc779c3d06b",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Материалы/Radare2 + Iaito.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Radare2 + Iaito"
+              "title": "Main (0x10176-0x10225)"
             }
           }
         ],
-        "currentTab": 6
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -191,7 +109,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Вводная.md",
+                "file": "Промежуточные итоги/Machine trap handler (0x10140 - 0x10175).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -201,7 +119,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Вводная"
+              "title": "Backlinks for Machine trap handler (0x10140 - 0x10175)"
             }
           },
           {
@@ -265,11 +183,13 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "2cab17920155ed4d",
+  "active": "0c5aac4414cae62b",
   "lastOpenFiles": [
-    "Промежуточные итоги/Таблица памяти (общая).md",
+    "Промежуточные итоги/Machine trap handler (0x10140-0x10175).md",
+    "Промежуточные итоги/Main (0x10176-0x10225).md",
     "Промежуточные итоги/Инициализация (0x10000-0x10106).md",
     "Промежуточные итоги/Странный код для SPI SD-карты.md",
+    "Промежуточные итоги/Таблица памяти (общая).md",
     "Обсуждения/05.02 Созвон.md",
     "Pasted image 20250205005950.png",
     "Pasted image 20250205005918.png",
