@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Промежуточные итоги/Отправка шестнадцатиричного числа по UART (0x10364-0x1038f).md",
+                "file": "todo.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Отправка шестнадцатиричного числа по UART (0x10364-0x1038f)"
+              "title": "todo"
             }
           }
         ]
@@ -185,9 +185,20 @@
   },
   "active": "28cb89c197b3ca2a",
   "lastOpenFiles": [
+    "todo.md",
+    "unmatched.rep/user/~index.dat",
+    "Промежуточные итоги/Таблица памяти (общая).md",
+    "test.rep/idata/~index.bak",
+    "test.rep/versioned/~index.bak",
+    "test.rep/projectState",
+    "test.lock~",
+    "test.lock",
+    "test.gpr",
+    "test.rep/versioned/~index.dat",
+    "test.rep/user/~index.dat",
+    "test.rep/idata/~index.dat",
     "Промежуточные итоги/Инициализация (0x10000-0x10106).md",
     "Промежуточные итоги/Main (0x10176-0x10225).md",
-    "Промежуточные итоги/Таблица памяти (общая).md",
     "Промежуточные итоги/TODO.md",
     "Промежуточные итоги/Отправка сообщения по UART (0x10348-0x10363).md",
     "Промежуточные итоги/Отправка шестнадцатеричного числа по UART (0x10364-0x1038f).md",
@@ -198,15 +209,12 @@
     "Промежуточные итоги/TODO - раскидать.md",
     "Обсуждения/05.02 Созвон.md",
     "Pasted image 20250205005950.png",
-    "Промежуточные итоги",
     "Материалы/RISC-V.md",
     "Материалы/Ghidra.md",
     "Обсуждения/04.02.md",
     "Обсуждения/03.02 Вводный созвон.md",
     "Обсуждения/03.02 Итоги.md",
     "Материалы/Radare2 + Iaito.md",
-    "Материалы",
-    "Обсуждения",
     "Welcome.md"
   ]
 }
