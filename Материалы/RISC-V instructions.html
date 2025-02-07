@@ -1,0 +1,3742 @@
+<!DOCTYPE html>
+<!-- saved from url=(0078)file:///C:/Users/Anton/Downloads/Telegram%20Desktop/RISC-V%20instructions.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RISC-V instructions</title>
+  <link rel="stylesheet" type="text/css" href="file:///C:/Users/Anton/Downloads/Telegram%20Desktop/RISC-V%20instructions_files/main.css">
+  <style rel="stylesheet">
+    .instruction {margin: 1em 0}
+    .instruction big {font-family: monospace}
+    .instruction .params {font-family: monospace; margin-left: 4em}
+    .instruction p {margin: 0.5em 0}
+    p.right {float: right; margin: 0}
+    .enctable td {width: 100%; text-align: center; border: 0.05em solid #000}
+    .enctable .w20 {width: 20%}
+    .enctable .w7 {width: 7%}
+    .enctable .w5 {width: 5%}
+    .enctable tr:nth-child(1) td {
+        font-size: 0.8em;
+        padding-bottom: 0;
+        text-align: justify;
+        text-align-last: justify;
+        border: none;
+    }
+    .enctable tr:nth-child(3) td {
+        font-size: 0.8em;
+        padding-top: 0;
+        text-align: center;
+        border: none;
+    }
+
+    .enctable.R tr td:nth-child(1) {width: 7%}
+    .enctable.R tr td:nth-child(2) {width: 5%}
+    .enctable.R tr td:nth-child(3) {width: 5%}
+    .enctable.R tr td:nth-child(4) {width: 3%}
+    .enctable.R tr td:nth-child(5) {width: 5%}
+    .enctable.R tr td:nth-child(6) {width: 7%}
+
+    .enctable.R4 tr td:nth-child(1) {width: 5%}
+    .enctable.R4 tr td:nth-child(2) {width: 2%}
+    .enctable.R4 tr td:nth-child(3) {width: 5%}
+    .enctable.R4 tr td:nth-child(4) {width: 5%}
+    .enctable.R4 tr td:nth-child(5) {width: 3%}
+    .enctable.R4 tr td:nth-child(6) {width: 5%}
+    .enctable.R4 tr td:nth-child(7) {width: 7%}
+
+    .enctable.I tr td:nth-child(1) {width: 12%}
+    .enctable.I tr td:nth-child(2) {width: 5%}
+    .enctable.I tr td:nth-child(3) {width: 3%}
+    .enctable.I tr td:nth-child(4) {width: 5%}
+    .enctable.I tr td:nth-child(5) {width: 7%}
+
+    .enctable.S tr td:nth-child(1) {width: 7%}
+    .enctable.S tr td:nth-child(2) {width: 5%}
+    .enctable.S tr td:nth-child(3) {width: 5%}
+    .enctable.S tr td:nth-child(4) {width: 3%}
+    .enctable.S tr td:nth-child(5) {width: 5%}
+    .enctable.S tr td:nth-child(6) {width: 7%}
+
+    .enctable.B tr td:nth-child(1) {width: 7%}
+    .enctable.B tr td:nth-child(2) {width: 5%}
+    .enctable.B tr td:nth-child(3) {width: 5%}
+    .enctable.B tr td:nth-child(4) {width: 3%}
+    .enctable.B tr td:nth-child(5) {width: 5%}
+    .enctable.B tr td:nth-child(6) {width: 7%}
+
+    .enctable.U tr td:nth-child(1) {width: 20%}
+    .enctable.U tr td:nth-child(2) {width: 5%}
+    .enctable.U tr td:nth-child(3) {width: 7%}
+
+    .enctable.J tr td:nth-child(1) {width: 20%}
+    .enctable.J tr td:nth-child(2) {width: 5%}
+    .enctable.J tr td:nth-child(3) {width: 7%}
+  </style>
+<style type="text/css"></style></head>
+<body>
+
+<nav><a href="https://www.robalni.org/">robalni.org</a></nav>
+
+<h1>RISC-V instructions</h1>
+
+<p>Contents:</p>
+<ul>
+<li><a href="https://www.robalni.org/riscv/instructions.html#categories">Instructions by category</a></li>
+<li><a href="https://www.robalni.org/riscv/instructions.html#explanations">Explanations</a></li>
+<li><a href="https://www.robalni.org/riscv/instructions.html#asm_instructions">Assembler Instructions</a></li>
+<li><a href="https://www.robalni.org/riscv/instructions.html#instructions">Hardware Instructions</a></li>
+</ul>
+
+<h2 id="categories">Instructions by category</h2>
+<table>
+<tbody><tr><td>Int Arith:</td><td><a href="https://www.robalni.org/riscv/instructions.html#add">add</a> <a href="https://www.robalni.org/riscv/instructions.html#addi">addi</a> <a href="https://www.robalni.org/riscv/instructions.html#addiw">addiw</a> <a href="https://www.robalni.org/riscv/instructions.html#addw">addw</a> <a href="https://www.robalni.org/riscv/instructions.html#amoadd.d">amoadd.d</a> <a href="https://www.robalni.org/riscv/instructions.html#amoadd.w">amoadd.w</a> <a href="https://www.robalni.org/riscv/instructions.html#amomax.d">amomax.d</a> <a href="https://www.robalni.org/riscv/instructions.html#amomaxu.d">amomaxu.d</a> <a href="https://www.robalni.org/riscv/instructions.html#amomaxu.w">amomaxu.w</a> <a href="https://www.robalni.org/riscv/instructions.html#amomax.w">amomax.w</a> <a href="https://www.robalni.org/riscv/instructions.html#amomin.d">amomin.d</a> <a href="https://www.robalni.org/riscv/instructions.html#amominu.d">amominu.d</a> <a href="https://www.robalni.org/riscv/instructions.html#amominu.w">amominu.w</a> <a href="https://www.robalni.org/riscv/instructions.html#amomin.w">amomin.w</a> <a href="https://www.robalni.org/riscv/instructions.html#div">div</a> <a href="https://www.robalni.org/riscv/instructions.html#divu">divu</a> <a href="https://www.robalni.org/riscv/instructions.html#divuw">divuw</a> <a href="https://www.robalni.org/riscv/instructions.html#divw">divw</a> <a href="https://www.robalni.org/riscv/instructions.html#mul">mul</a> <a href="https://www.robalni.org/riscv/instructions.html#mulh">mulh</a> <a href="https://www.robalni.org/riscv/instructions.html#mulhsu">mulhsu</a> <a href="https://www.robalni.org/riscv/instructions.html#mulhu">mulhu</a> <a href="https://www.robalni.org/riscv/instructions.html#mulw">mulw</a> <a href="https://www.robalni.org/riscv/instructions.html#rem">rem</a> <a href="https://www.robalni.org/riscv/instructions.html#remu">remu</a> <a href="https://www.robalni.org/riscv/instructions.html#remuw">remuw</a> <a href="https://www.robalni.org/riscv/instructions.html#remw">remw</a> <a href="https://www.robalni.org/riscv/instructions.html#sub">sub</a> <a href="https://www.robalni.org/riscv/instructions.html#subw">subw</a> </td></tr>
+<tr><td>Float Arith:</td><td><a href="https://www.robalni.org/riscv/instructions.html#fadd.d">fadd.d</a> <a href="https://www.robalni.org/riscv/instructions.html#fadd.s">fadd.s</a> <a href="https://www.robalni.org/riscv/instructions.html#fdiv.d">fdiv.d</a> <a href="https://www.robalni.org/riscv/instructions.html#fdiv.s">fdiv.s</a> <a href="https://www.robalni.org/riscv/instructions.html#fmadd.d">fmadd.d</a> <a href="https://www.robalni.org/riscv/instructions.html#fmadd.s">fmadd.s</a> <a href="https://www.robalni.org/riscv/instructions.html#fmax.d">fmax.d</a> <a href="https://www.robalni.org/riscv/instructions.html#fmax.s">fmax.s</a> <a href="https://www.robalni.org/riscv/instructions.html#fmin.d">fmin.d</a> <a href="https://www.robalni.org/riscv/instructions.html#fmin.s">fmin.s</a> <a href="https://www.robalni.org/riscv/instructions.html#fmsub.d">fmsub.d</a> <a href="https://www.robalni.org/riscv/instructions.html#fmsub.s">fmsub.s</a> <a href="https://www.robalni.org/riscv/instructions.html#fmul.d">fmul.d</a> <a href="https://www.robalni.org/riscv/instructions.html#fmul.s">fmul.s</a> <a href="https://www.robalni.org/riscv/instructions.html#fnmadd.d">fnmadd.d</a> <a href="https://www.robalni.org/riscv/instructions.html#fnmadd.s">fnmadd.s</a> <a href="https://www.robalni.org/riscv/instructions.html#fnmsub.d">fnmsub.d</a> <a href="https://www.robalni.org/riscv/instructions.html#fnmsub.s">fnmsub.s</a> <a href="https://www.robalni.org/riscv/instructions.html#fsqrt.d">fsqrt.d</a> <a href="https://www.robalni.org/riscv/instructions.html#fsqrt.s">fsqrt.s</a> <a href="https://www.robalni.org/riscv/instructions.html#fsub.d">fsub.d</a> <a href="https://www.robalni.org/riscv/instructions.html#fsub.s">fsub.s</a> </td></tr>
+<tr><td>Logic:</td><td><a href="https://www.robalni.org/riscv/instructions.html#amoand.d">amoand.d</a> <a href="https://www.robalni.org/riscv/instructions.html#amoand.w">amoand.w</a> <a href="https://www.robalni.org/riscv/instructions.html#amoor.d">amoor.d</a> <a href="https://www.robalni.org/riscv/instructions.html#amoor.w">amoor.w</a> <a href="https://www.robalni.org/riscv/instructions.html#amoxor.d">amoxor.d</a> <a href="https://www.robalni.org/riscv/instructions.html#amoxor.w">amoxor.w</a> <a href="https://www.robalni.org/riscv/instructions.html#and">and</a> <a href="https://www.robalni.org/riscv/instructions.html#andi">andi</a> <a href="https://www.robalni.org/riscv/instructions.html#or">or</a> <a href="https://www.robalni.org/riscv/instructions.html#ori">ori</a> <a href="https://www.robalni.org/riscv/instructions.html#xor">xor</a> <a href="https://www.robalni.org/riscv/instructions.html#xori">xori</a> </td></tr>
+<tr><td>Shift:</td><td><a href="https://www.robalni.org/riscv/instructions.html#sll">sll</a> <a href="https://www.robalni.org/riscv/instructions.html#slli">slli</a> <a href="https://www.robalni.org/riscv/instructions.html#slliw">slliw</a> <a href="https://www.robalni.org/riscv/instructions.html#sllw">sllw</a> <a href="https://www.robalni.org/riscv/instructions.html#sra">sra</a> <a href="https://www.robalni.org/riscv/instructions.html#srai">srai</a> <a href="https://www.robalni.org/riscv/instructions.html#sraiw">sraiw</a> <a href="https://www.robalni.org/riscv/instructions.html#sraw">sraw</a> <a href="https://www.robalni.org/riscv/instructions.html#srl">srl</a> <a href="https://www.robalni.org/riscv/instructions.html#srli">srli</a> <a href="https://www.robalni.org/riscv/instructions.html#srliw">srliw</a> <a href="https://www.robalni.org/riscv/instructions.html#srlw">srlw</a> </td></tr>
+<tr><td>Branch:</td><td><a href="https://www.robalni.org/riscv/instructions.html#beq">beq</a> <a href="https://www.robalni.org/riscv/instructions.html#bge">bge</a> <a href="https://www.robalni.org/riscv/instructions.html#bgeu">bgeu</a> <a href="https://www.robalni.org/riscv/instructions.html#blt">blt</a> <a href="https://www.robalni.org/riscv/instructions.html#bltu">bltu</a> <a href="https://www.robalni.org/riscv/instructions.html#bne">bne</a> </td></tr>
+<tr><td>Jump:</td><td><a href="https://www.robalni.org/riscv/instructions.html#jal">jal</a> <a href="https://www.robalni.org/riscv/instructions.html#jalr">jalr</a> </td></tr>
+<tr><td>Memory:</td><td><a href="https://www.robalni.org/riscv/instructions.html#amoswap.d">amoswap.d</a> <a href="https://www.robalni.org/riscv/instructions.html#amoswap.w">amoswap.w</a> <a href="https://www.robalni.org/riscv/instructions.html#fence">fence</a> <a href="https://www.robalni.org/riscv/instructions.html#fence.i">fence.i</a> <a href="https://www.robalni.org/riscv/instructions.html#fld">fld</a> <a href="https://www.robalni.org/riscv/instructions.html#flw">flw</a> <a href="https://www.robalni.org/riscv/instructions.html#fsd">fsd</a> <a href="https://www.robalni.org/riscv/instructions.html#fsw">fsw</a> <a href="https://www.robalni.org/riscv/instructions.html#lb">lb</a> <a href="https://www.robalni.org/riscv/instructions.html#lbu">lbu</a> <a href="https://www.robalni.org/riscv/instructions.html#ld">ld</a> <a href="https://www.robalni.org/riscv/instructions.html#lh">lh</a> <a href="https://www.robalni.org/riscv/instructions.html#lhu">lhu</a> <a href="https://www.robalni.org/riscv/instructions.html#lr.d">lr.d</a> <a href="https://www.robalni.org/riscv/instructions.html#lr.w">lr.w</a> <a href="https://www.robalni.org/riscv/instructions.html#lw">lw</a> <a href="https://www.robalni.org/riscv/instructions.html#lwu">lwu</a> <a href="https://www.robalni.org/riscv/instructions.html#sb">sb</a> <a href="https://www.robalni.org/riscv/instructions.html#sc.d">sc.d</a> <a href="https://www.robalni.org/riscv/instructions.html#sc.w">sc.w</a> <a href="https://www.robalni.org/riscv/instructions.html#sd">sd</a> <a href="https://www.robalni.org/riscv/instructions.html#sh">sh</a> <a href="https://www.robalni.org/riscv/instructions.html#sw">sw</a> </td></tr>
+<tr><td>Convert:</td><td><a href="https://www.robalni.org/riscv/instructions.html#fcvt.d.l">fcvt.d.l</a> <a href="https://www.robalni.org/riscv/instructions.html#fcvt.d.lu">fcvt.d.lu</a> <a href="https://www.robalni.org/riscv/instructions.html#fcvt.d.s">fcvt.d.s</a> <a href="https://www.robalni.org/riscv/instructions.html#fcvt.d.w">fcvt.d.w</a> <a href="https://www.robalni.org/riscv/instructions.html#fcvt.d.wu">fcvt.d.wu</a> <a href="https://www.robalni.org/riscv/instructions.html#fcvt.l.d">fcvt.l.d</a> <a href="https://www.robalni.org/riscv/instructions.html#fcvt.l.s">fcvt.l.s</a> <a href="https://www.robalni.org/riscv/instructions.html#fcvt.lu.d">fcvt.lu.d</a> <a href="https://www.robalni.org/riscv/instructions.html#fcvt.lu.s">fcvt.lu.s</a> <a href="https://www.robalni.org/riscv/instructions.html#fcvt.s.d">fcvt.s.d</a> <a href="https://www.robalni.org/riscv/instructions.html#fcvt.s.l">fcvt.s.l</a> <a href="https://www.robalni.org/riscv/instructions.html#fcvt.s.lu">fcvt.s.lu</a> <a href="https://www.robalni.org/riscv/instructions.html#fcvt.s.w">fcvt.s.w</a> <a href="https://www.robalni.org/riscv/instructions.html#fcvt.s.wu">fcvt.s.wu</a> <a href="https://www.robalni.org/riscv/instructions.html#fcvt.w.d">fcvt.w.d</a> <a href="https://www.robalni.org/riscv/instructions.html#fcvt.w.s">fcvt.w.s</a> <a href="https://www.robalni.org/riscv/instructions.html#fcvt.wu.d">fcvt.wu.d</a> <a href="https://www.robalni.org/riscv/instructions.html#fcvt.wu.s">fcvt.wu.s</a> </td></tr>
+<tr><td>Conditional:</td><td><a href="https://www.robalni.org/riscv/instructions.html#feq.d">feq.d</a> <a href="https://www.robalni.org/riscv/instructions.html#feq.s">feq.s</a> <a href="https://www.robalni.org/riscv/instructions.html#fle.d">fle.d</a> <a href="https://www.robalni.org/riscv/instructions.html#fle.s">fle.s</a> <a href="https://www.robalni.org/riscv/instructions.html#flt.d">flt.d</a> <a href="https://www.robalni.org/riscv/instructions.html#flt.s">flt.s</a> <a href="https://www.robalni.org/riscv/instructions.html#slt">slt</a> <a href="https://www.robalni.org/riscv/instructions.html#slti">slti</a> <a href="https://www.robalni.org/riscv/instructions.html#sltiu">sltiu</a> <a href="https://www.robalni.org/riscv/instructions.html#sltu">sltu</a> </td></tr>
+<tr><td>Control/Status:</td><td><a href="https://www.robalni.org/riscv/instructions.html#csrrc">csrrc</a> <a href="https://www.robalni.org/riscv/instructions.html#csrrci">csrrci</a> <a href="https://www.robalni.org/riscv/instructions.html#csrrs">csrrs</a> <a href="https://www.robalni.org/riscv/instructions.html#csrrsi">csrrsi</a> <a href="https://www.robalni.org/riscv/instructions.html#csrrw">csrrw</a> <a href="https://www.robalni.org/riscv/instructions.html#csrrwi">csrrwi</a> </td></tr>
+<tr><td>Uncategorized:</td><td><a href="https://www.robalni.org/riscv/instructions.html#auipc">auipc</a> <a href="https://www.robalni.org/riscv/instructions.html#ebreak">ebreak</a> <a href="https://www.robalni.org/riscv/instructions.html#ecall">ecall</a> <a href="https://www.robalni.org/riscv/instructions.html#fclass.d">fclass.d</a> <a href="https://www.robalni.org/riscv/instructions.html#fclass.s">fclass.s</a> <a href="https://www.robalni.org/riscv/instructions.html#fmv.d.x">fmv.d.x</a> <a href="https://www.robalni.org/riscv/instructions.html#fmv.w.x">fmv.w.x</a> <a href="https://www.robalni.org/riscv/instructions.html#fmv.x.d">fmv.x.d</a> <a href="https://www.robalni.org/riscv/instructions.html#fmv.x.w">fmv.x.w</a> <a href="https://www.robalni.org/riscv/instructions.html#fsgnj.d">fsgnj.d</a> <a href="https://www.robalni.org/riscv/instructions.html#fsgnjn.d">fsgnjn.d</a> <a href="https://www.robalni.org/riscv/instructions.html#fsgnjn.s">fsgnjn.s</a> <a href="https://www.robalni.org/riscv/instructions.html#fsgnj.s">fsgnj.s</a> <a href="https://www.robalni.org/riscv/instructions.html#fsgnjx.d">fsgnjx.d</a> <a href="https://www.robalni.org/riscv/instructions.html#fsgnjx.s">fsgnjx.s</a> <a href="https://www.robalni.org/riscv/instructions.html#lui">lui</a> </td></tr>
+</tbody></table>
+
+<h2 id="explanations">Explanations</h2>
+
+<table>
+<tbody><tr><th>Term</th><th>Meaning</th></tr>
+<tr><td>imm</td><td>Immediate integer value</td></tr>
+<tr><td>pc</td><td>Program counter</td></tr>
+<tr><td>rd</td><td>Destination integer register</td></tr>
+<tr><td>fd</td><td>Destination floating-point register</td></tr>
+<tr><td>rs*</td><td>Source integer register</td></tr>
+<tr><td>fs*</td><td>Source floating-point register</td></tr>
+<tr><td>sext(n)</td><td>Sign extend n</td></tr>
+<tr><td>1ext(n)</td><td>1-extend n; fill upper bits with ones; called "nan-boxing" when done with floating-point values</td></tr>
+<tr><td>x[n]</td><td>Integer register number n</td></tr>
+<tr><td>f[n]</td><td>Floating-point register number n</td></tr>
+<tr><td>M[n]</td><td>Memory at address n</td></tr>
+<tr><td>&lt;<sub>s</sub></td><td>Less than (signed)</td></tr>
+<tr><td>&lt;<sub>u</sub></td><td>Less than (unsigned)</td></tr>
+<tr><td>^</td><td>Bitwise Exclusive OR</td></tr>
+<tr><td>|</td><td>Bitwise OR</td></tr>
+<tr><td>&amp;</td><td>Bitwise AND</td></tr>
+<tr><td>~</td><td>Bitwise NOT</td></tr>
+<tr><td>&lt;&lt;</td><td>Logical bitshift left</td></tr>
+<tr><td>&gt;&gt;<sub>u</sub></td><td>Logical bitshift right</td></tr>
+<tr><td>&gt;&gt;<sub>s</sub></td><td>Arithmetic bitshift right</td></tr>
+<tr><td>XLEN</td><td>The size of a register in bits (32 on RV32, 64 on RV64)</td></tr>
+<tr><td>XHI</td><td>The index of the highest bit (XLEN - 1)</td></tr>
+<tr><td>DXHI</td><td>The index of the highest bit of a double sized register (XLEN * 2 - 1)</td></tr>
+<tr><td>byte</td><td>8-bit number</td></tr>
+<tr><td>halfword</td><td>16-bit number</td></tr>
+<tr><td>word</td><td>32-bit number</td></tr>
+<tr><td>doubleword</td><td>64-bit number</td></tr>
+</tbody></table>
+
+<p>Some of the instructions are called "pseudoinstructions". They are not real
+instructions for the processor with their own encoding, but a syntax that your
+assembler may compile into one or more real instructions.  The reason that they
+have been defined is probably to make assembly code easier to read and write.
+An example of a pseudoinstruction is "<a href="https://www.robalni.org/riscv/instructions.html#j">j</a>" to jump, which is
+defined as a special use of "<a href="https://www.robalni.org/riscv/instructions.html#jal">jal</a>" that doesn't link.</p>
+
+<a id="field_rm"></a>
+<p>Floating-point instructions have a field called "rm".  This field selects
+the rounding mode. Possible values are:</p>
+<table>
+<tbody><tr><th>Value</th><th>Name</th><th>Description</th></tr>
+<tr><td>000</td><td>RNE</td><td>Round to nearest, ties to even.</td></tr>
+<tr><td>001</td><td>RTZ</td><td>Round towards zero.</td></tr>
+<tr><td>010</td><td>RDN</td><td>Round down.</td></tr>
+<tr><td>011</td><td>RUP</td><td>Round up.</td></tr>
+<tr><td>100</td><td>RMM</td><td>Round to nearest, ties to max magnitude.</td></tr>
+<tr><td>101</td><td></td><td>Invalid.</td></tr>
+<tr><td>110</td><td></td><td>Invalid.</td></tr>
+<tr><td>111</td><td>DYN</td><td>Dynamic; use rounding mode specified in rounding mode register.</td></tr>
+</tbody></table>
+
+<p>Atomic instructions have the fields "aq" and "rl".  They work like the
+"<a href="https://www.robalni.org/riscv/instructions.html#fence">fence</a>" instruction.  If "aq" is 1 then no memory operation
+following the atomic instruction can be observed before the atomic instruction
+by any hart.  If "rl" is 1 then no memory operation before the atomic instruction
+can be observed after the atomic instruction by any hart.</p>
+
+<p>For full specifications, see <a href="https://riscv.org/technical/specifications/">https://riscv.org/technical/specifications/</a>.</p>
+
+<h2 id="asm_instructions">Assembler Instructions</h2>
+
+<p>These are the instructions that your assembler parses and compiles to machine code.</p>
+
+<table>
+<tbody><tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#add">add</a></td><td>
+rd, rs1, rs2</td><td>
+Add</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#addi">addi</a></td><td>
+rd, rs1, imm</td><td>
+Add immediate</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#addiw">addiw</a></td><td>
+rd, rs1, imm</td><td>
+Add word immediate</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#addw">addw</a></td><td>
+rd, rs1, rs2</td><td>
+Add word</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#amoadd.d">amoadd.d</a></td><td>
+rd, rs2, (rs1)</td><td>
+Atomic add doubleword</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#amoadd.w">amoadd.w</a></td><td>
+rd, rs2, (rs1)</td><td>
+Atomic add word</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#amoand.d">amoand.d</a></td><td>
+rd, rs2, (rs1)</td><td>
+Atomic AND doubleword</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#amoand.w">amoand.w</a></td><td>
+rd, rs2, (rs1)</td><td>
+Atomic AND word</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#amomax.d">amomax.d</a></td><td>
+rd, rs2, (rs1)</td><td>
+Atomic maximum doubleword</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#amomaxu.d">amomaxu.d</a></td><td>
+rd, rs2, (rs1)</td><td>
+Atomic unsigned maximum word</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#amomaxu.w">amomaxu.w</a></td><td>
+rd, rs2, (rs1)</td><td>
+Atomic unsigned maximum word</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#amomax.w">amomax.w</a></td><td>
+rd, rs2, (rs1)</td><td>
+Atomic maximum word</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#amomin.d">amomin.d</a></td><td>
+rd, rs2, (rs1)</td><td>
+Atomic minimum doubleword</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#amominu.d">amominu.d</a></td><td>
+rd, rs2, (rs1)</td><td>
+Atomic unsigned minimum word</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#amominu.w">amominu.w</a></td><td>
+rd, rs2, (rs1)</td><td>
+Atomic unsigned minimum word</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#amomin.w">amomin.w</a></td><td>
+rd, rs2, (rs1)</td><td>
+Atomic minimum word</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#amoor.d">amoor.d</a></td><td>
+rd, rs2, (rs1)</td><td>
+Atomic OR doubleword</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#amoor.w">amoor.w</a></td><td>
+rd, rs2, (rs1)</td><td>
+Atomic OR word</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#amoswap.d">amoswap.d</a></td><td>
+rd, rs2, (rs1)</td><td>
+Atomic swap doubleword</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#amoswap.w">amoswap.w</a></td><td>
+rd, rs2, (rs1)</td><td>
+Atomic swap word</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#amoxor.d">amoxor.d</a></td><td>
+rd, rs2, (rs1)</td><td>
+Atomic XOR doubleword</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#amoxor.w">amoxor.w</a></td><td>
+rd, rs2, (rs1)</td><td>
+Atomic XOR word</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#and">and</a></td><td>
+rd, rs1, rs2</td><td>
+AND</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#andi">andi</a></td><td>
+rd, rs1, imm</td><td>
+AND immediate</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#auipc">auipc</a></td><td>
+rd, imm[31:12]</td><td>
+Add upper immediate to <code>pc</code></td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#beq">beq</a></td><td>
+rs1, rs2, imm</td><td>
+Branch if =</td></tr>
+<tr><td>
+beqz</td><td>
+rs1, imm</td><td>
+Branch if = zero</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#bge">bge</a></td><td>
+rs1, rs2, imm</td><td>
+Branch if ≥</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#bgeu">bgeu</a></td><td>
+rs1, rs2, imm</td><td>
+Branch if ≥, unsigned</td></tr>
+<tr><td>
+bgez</td><td>
+rs1, imm</td><td>
+Branch if ≥ zero</td></tr>
+<tr><td>
+bgt</td><td>
+rs1, rs2, imm</td><td>
+Branch if &gt;</td></tr>
+<tr><td>
+bgtu</td><td>
+rs1, rs2, imm</td><td>
+Branch if &gt;, unsigned</td></tr>
+<tr><td>
+bgtz</td><td>
+rs1, imm</td><td>
+Branch if &gt; zero</td></tr>
+<tr><td>
+ble</td><td>
+rs1, rs2, imm</td><td>
+Branch if ≤</td></tr>
+<tr><td>
+bleu</td><td>
+rs1, rs2, imm</td><td>
+Branch if ≤, unsigned</td></tr>
+<tr><td>
+blez</td><td>
+rs, imm</td><td>
+Branch if ≤ zero</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#blt">blt</a></td><td>
+rs1, rs2, imm</td><td>
+Branch if &lt;</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#bltu">bltu</a></td><td>
+rs1, rs2, imm</td><td>
+Branch if &lt;, unsigned</td></tr>
+<tr><td>
+bltz</td><td>
+rs, imm</td><td>
+Branch if &lt; zero</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#bne">bne</a></td><td>
+rs1, rs2, imm</td><td>
+Branch if ≠</td></tr>
+<tr><td>
+bnez</td><td>
+rs, imm</td><td>
+Branch if ≠ zero</td></tr>
+<tr><td>
+call</td><td>
+imm</td><td>
+Call far-away subroutine</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#csrrc">csrrc</a></td><td>
+rd csr rs1</td><td>
+Control and status register read and clear</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#csrrci">csrrci</a></td><td>
+rd csr imm[4:0]</td><td>
+Control and status register read and clear immediate</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#csrrs">csrrs</a></td><td>
+rd, csr, rs1</td><td>
+Control and status register read and set</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#csrrsi">csrrsi</a></td><td>
+rd, csr, imm[4:0]</td><td>
+Control and status register read and set immediate</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#csrrw">csrrw</a></td><td>
+rd, csr, rs1</td><td>
+Control and status register read and write</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#csrrwi">csrrwi</a></td><td>
+rd, csr, imm[4:0]</td><td>
+Control and status register read and write immediate</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#div">div</a></td><td>
+rd, rs1, rs2</td><td>
+Divide</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#divu">divu</a></td><td>
+rd, rs1, rs2</td><td>
+Divide unsigned</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#divuw">divuw</a></td><td>
+rd, rs1, rs2</td><td>
+Divide unsigned word</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#divw">divw</a></td><td>
+rd, rs1, rs2</td><td>
+Divide word</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#ebreak">ebreak</a></td><td>
+</td><td>
+Environment breakpoint</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#ecall">ecall</a></td><td>
+</td><td>
+Environment call</td></tr>
+<tr><td>
+fabs.d</td><td>
+fd, fs</td><td>
+Double-precision absolute value</td></tr>
+<tr><td>
+fabs.s</td><td>
+fd, fs</td><td>
+Single-precision absolute value</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fadd.d">fadd.d</a></td><td>
+fd, fs1, fs2</td><td>
+Add double-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fadd.s">fadd.s</a></td><td>
+fd, fs1, fs2</td><td>
+Add single-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fclass.d">fclass.d</a></td><td>
+rd, fs</td><td>
+Classify double-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fclass.s">fclass.s</a></td><td>
+rd, fs</td><td>
+Classify single-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fcvt.d.l">fcvt.d.l</a></td><td>
+fd, rs1</td><td>
+Convert 64-bit integer to double-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fcvt.d.lu">fcvt.d.lu</a></td><td>
+fd, rs1</td><td>
+Convert 64-bit unsigned integer to double-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fcvt.d.s">fcvt.d.s</a></td><td>
+fd, fs1</td><td>
+Convert single-precision to double-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fcvt.d.w">fcvt.d.w</a></td><td>
+fd, rs1</td><td>
+Convert 32-bit integer to double-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fcvt.d.wu">fcvt.d.wu</a></td><td>
+fd, rs1</td><td>
+Convert 32-bit unsigned integer to double-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fcvt.l.d">fcvt.l.d</a></td><td>
+rd, fs1</td><td>
+Convert double-precision floating-point to 64-bit integer</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fcvt.l.s">fcvt.l.s</a></td><td>
+rd, fs1</td><td>
+Convert single-precision floating-point to 64-bit integer</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fcvt.lu.d">fcvt.lu.d</a></td><td>
+rd, fs1</td><td>
+Convert double-precision floating-point to unsigned 64-bit integer</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fcvt.lu.s">fcvt.lu.s</a></td><td>
+rd, fs1</td><td>
+Convert single-precision floating-point to unsigned 64-bit integer</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fcvt.s.d">fcvt.s.d</a></td><td>
+fd, fs1</td><td>
+Convert double-precision to single-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fcvt.s.l">fcvt.s.l</a></td><td>
+fd, rs1</td><td>
+Convert 64-bit integer to single-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fcvt.s.lu">fcvt.s.lu</a></td><td>
+fd, rs1</td><td>
+Convert 64-bit unsigned integer to single-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fcvt.s.w">fcvt.s.w</a></td><td>
+fd, rs1</td><td>
+Convert 32-bit integer to single-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fcvt.s.wu">fcvt.s.wu</a></td><td>
+fd, rs1</td><td>
+Convert 32-bit unsigned integer to single-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fcvt.w.d">fcvt.w.d</a></td><td>
+rd, fs1</td><td>
+Convert double-precision floating-point to 32-bit integer</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fcvt.w.s">fcvt.w.s</a></td><td>
+rd, fs1</td><td>
+Convert single-precision floating-point to 32-bit integer</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fcvt.wu.d">fcvt.wu.d</a></td><td>
+rd, fs1</td><td>
+Convert double-precision floating-point to unsigned 32-bit integer</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fcvt.wu.s">fcvt.wu.s</a></td><td>
+rd, fs1</td><td>
+Convert single-precision floating-point to unsigned 32-bit integer</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fdiv.d">fdiv.d</a></td><td>
+fd, fs1, fs2</td><td>
+Divide double-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fdiv.s">fdiv.s</a></td><td>
+fd, fs1, fs2</td><td>
+Divide single-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fence">fence</a></td><td>
+pred, succ</td><td>
+Fence memory and I/O</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fence.i">fence.i</a></td><td>
+</td><td>
+Fence instruction stream</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#feq.d">feq.d</a></td><td>
+rd, fs1, fs2</td><td>
+Set if equal double-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#feq.s">feq.s</a></td><td>
+rd, fs1, fs2</td><td>
+Set if equal single-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fld">fld</a></td><td>
+fd, imm(rs1)</td><td>
+Load double-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fle.d">fle.d</a></td><td>
+rd, fs1, fs2</td><td>
+Set if &lt;= double-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fle.s">fle.s</a></td><td>
+rd, fs1, fs2</td><td>
+Set if &lt;= single-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#flt.d">flt.d</a></td><td>
+rd, fs1, fs2</td><td>
+Set if &lt; double-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#flt.s">flt.s</a></td><td>
+rd, fs1, fs2</td><td>
+Set if &lt; single-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#flw">flw</a></td><td>
+fd, imm(rs1)</td><td>
+Load single-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fmadd.d">fmadd.d</a></td><td>
+fd, fs1, fs2, fs3</td><td>
+Multiply and add double-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fmadd.s">fmadd.s</a></td><td>
+fd, fs1, fs2, fs3</td><td>
+Multiply and add single-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fmax.d">fmax.d</a></td><td>
+fd, fs1, fs2</td><td>
+Maximum double-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fmax.s">fmax.s</a></td><td>
+fd, fs1, fs2</td><td>
+Maximum single-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fmin.d">fmin.d</a></td><td>
+fd, fs1, fs2</td><td>
+Minimum double-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fmin.s">fmin.s</a></td><td>
+fd, fs1, fs2</td><td>
+Minimum single-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fmsub.d">fmsub.d</a></td><td>
+fd, fs1, fs2, fs3</td><td>
+Multiply and subtract double-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fmsub.s">fmsub.s</a></td><td>
+fd, fs1, fs2, fs3</td><td>
+Multiply and subtract single-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fmul.d">fmul.d</a></td><td>
+fd, fs1, fs2</td><td>
+Multiply double-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fmul.s">fmul.s</a></td><td>
+fd, fs1, fs2</td><td>
+Multiply single-precision floating-point</td></tr>
+<tr><td>
+fmv.d</td><td>
+fd, fs</td><td>
+Copy double-precision register</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fmv.d.x">fmv.d.x</a></td><td>
+fd, rs</td><td>
+Move 64-bit integer to single-precision floating-point</td></tr>
+<tr><td>
+fmv.s</td><td>
+fd, fs</td><td>
+Copy single-precision register</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fmv.w.x">fmv.w.x</a></td><td>
+fd, rs</td><td>
+Move 32-bit integer to single-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fmv.x.d">fmv.x.d</a></td><td>
+rd, fs</td><td>
+Move double-precision floating-point to 64-bit integer</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fmv.x.w">fmv.x.w</a></td><td>
+rd, fs</td><td>
+Move single-precision floating-point to 32-bit integer</td></tr>
+<tr><td>
+fneg.d</td><td>
+fd, fs</td><td>
+Double-precision negate</td></tr>
+<tr><td>
+fneg.s</td><td>
+fd, fs</td><td>
+Single-precision negate</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fnmadd.d">fnmadd.d</a></td><td>
+fd, fs1, fs2, fs3</td><td>
+Negative multiply and add double-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fnmadd.s">fnmadd.s</a></td><td>
+fd, fs1, fs2, fs3</td><td>
+Negative multiply and add single-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fnmsub.d">fnmsub.d</a></td><td>
+fd, fs1, fs2, fs3</td><td>
+Negative multiply and subtract double-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fnmsub.s">fnmsub.s</a></td><td>
+fd, fs1, fs2, fs3</td><td>
+Negative multiply and subtract single-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fsd">fsd</a></td><td>
+fs2, imm(rs1)</td><td>
+Store double-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fsgnj.d">fsgnj.d</a></td><td>
+fd, fs1, fs2</td><td>
+Sign inject for double-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fsgnjn.d">fsgnjn.d</a></td><td>
+fd, fs1, fs2</td><td>
+Negative sign inject for double-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fsgnjn.s">fsgnjn.s</a></td><td>
+fd, fs1, fs2</td><td>
+Negative sign inject for single-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fsgnj.s">fsgnj.s</a></td><td>
+fd, fs1, fs2</td><td>
+Sign inject for single-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fsgnjx.d">fsgnjx.d</a></td><td>
+fd, fs1, fs2</td><td>
+Xor sign inject for double-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fsgnjx.s">fsgnjx.s</a></td><td>
+fd, fs1, fs2</td><td>
+Xor sign inject for single-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fsqrt.d">fsqrt.d</a></td><td>
+fd, fs1</td><td>
+Square root double-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fsqrt.s">fsqrt.s</a></td><td>
+fd, fs1</td><td>
+Square root single-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fsub.d">fsub.d</a></td><td>
+fd, fs1, fs2</td><td>
+Subtract double-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fsub.s">fsub.s</a></td><td>
+fd, fs1, fs2</td><td>
+Subtract single-precision floating-point</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#fsw">fsw</a></td><td>
+fs2, imm(rs1)</td><td>
+Store single-precision floating-point</td></tr>
+<tr><td>
+j</td><td>
+imm</td><td>
+Jump</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#jal">jal</a></td><td>
+rd, imm</td><td>
+Jump and link</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#jalr">jalr</a></td><td>
+rd, imm(rs1)</td><td>
+Jump and link register</td></tr>
+<tr><td>
+jr</td><td>
+rs</td><td>
+Jump register</td></tr>
+<tr><td>
+la</td><td>
+rd, imm</td><td>
+Load address</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#lb">lb</a></td><td>
+rd, imm(rs1)</td><td>
+Load byte</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#lbu">lbu</a></td><td>
+rd, imm(rs1)</td><td>
+Load byte, unsigned</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#ld">ld</a></td><td>
+rd, imm(rs1)</td><td>
+Load doubleword</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#lh">lh</a></td><td>
+rd, imm(rs1)</td><td>
+Load halfword</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#lhu">lhu</a></td><td>
+rd, imm(rs1)</td><td>
+Load halfword, unsigned</td></tr>
+<tr><td>
+li</td><td>
+rd, imm</td><td>
+Load immediate</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#lr.d">lr.d</a></td><td>
+rd, rs1</td><td>
+Load-reserve doubleword</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#lr.w">lr.w</a></td><td>
+rd, rs1</td><td>
+Load-reserve word</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#lui">lui</a></td><td>
+rd, imm[31:12]</td><td>
+Load upper immediate</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#lw">lw</a></td><td>
+rd, imm(rs1)</td><td>
+Load word</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#lwu">lwu</a></td><td>
+rd, imm(rs1)</td><td>
+Load word, unsigned</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#mul">mul</a></td><td>
+rd, rs1, rs2</td><td>
+Multiply</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#mulh">mulh</a></td><td>
+rd, rs1, rs2</td><td>
+Multiply upper</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#mulhsu">mulhsu</a></td><td>
+rd, rs1, rs2</td><td>
+Multiply upper signed*unsigned</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#mulhu">mulhu</a></td><td>
+rd, rs1, rs2</td><td>
+Multiply upper unsigned</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#mulw">mulw</a></td><td>
+rd, rs1, rs2</td><td>
+Multiply word</td></tr>
+<tr><td>
+mv</td><td>
+rd, rs</td><td>
+Copy register</td></tr>
+<tr><td>
+neg</td><td>
+rd, rs</td><td>
+Two's complement</td></tr>
+<tr><td>
+negw</td><td>
+rd, rs</td><td>
+Two's complement word</td></tr>
+<tr><td>
+nop</td><td>
+</td><td>
+No operation</td></tr>
+<tr><td>
+not</td><td>
+rd, rs</td><td>
+One's complement</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#or">or</a></td><td>
+rd, rs1, rs2</td><td>
+OR</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#ori">ori</a></td><td>
+rd, rs1, imm</td><td>
+OR immediate</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#rem">rem</a></td><td>
+rd, rs1, rs2</td><td>
+Remainder</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#remu">remu</a></td><td>
+rd, rs1, rs2</td><td>
+Remainder unsigned</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#remuw">remuw</a></td><td>
+rd, rs1, rs2</td><td>
+Remainder unsigned word</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#remw">remw</a></td><td>
+rd, rs1, rs2</td><td>
+Remainder word</td></tr>
+<tr><td>
+ret</td><td>
+</td><td>
+Return from subroutine</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#sb">sb</a></td><td>
+rs2, imm(rs1)</td><td>
+Store byte</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#sc.d">sc.d</a></td><td>
+rd, rs1, rs2</td><td>
+Store-conditional doubleword</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#sc.w">sc.w</a></td><td>
+rd, rs1, rs2</td><td>
+Store-conditional word</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#sd">sd</a></td><td>
+rs2, imm(rs1)</td><td>
+Store doubleword</td></tr>
+<tr><td>
+sext.w</td><td>
+rd, rs</td><td>
+Sign extend word</td></tr>
+<tr><td>
+seqz</td><td>
+rd, rs</td><td>
+Set if = zero</td></tr>
+<tr><td>
+sgtz</td><td>
+rd, rs</td><td>
+Set if &gt; zero</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#sh">sh</a></td><td>
+rs2, imm(rs1)</td><td>
+Store halfword</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#sll">sll</a></td><td>
+rd, rs1, rs2</td><td>
+Shift left logical</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#slli">slli</a></td><td>
+rd, rs1, imm</td><td>
+Shift left logical immediate</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#slli">slli</a></td><td>
+rd, rs1, imm</td><td>
+Shift left logical immediate</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#slliw">slliw</a></td><td>
+rd, rs1, imm</td><td>
+Shift left logical word immediate</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#sllw">sllw</a></td><td>
+rd, rs1, rs2</td><td>
+Shift left logical word</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#slt">slt</a></td><td>
+rd, rs1, rs2</td><td>
+Set if &lt;</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#slti">slti</a></td><td>
+rd, rs1, imm</td><td>
+Set if &lt; immediate</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#sltiu">sltiu</a></td><td>
+rd, rs1, imm</td><td>
+Set if &lt; immediate, unsigned</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#sltu">sltu</a></td><td>
+rd, rs1, rs2</td><td>
+Set if &lt;, unsigned</td></tr>
+<tr><td>
+sltz</td><td>
+rd, rs</td><td>
+Set if &lt; zero</td></tr>
+<tr><td>
+snez</td><td>
+rd, rs</td><td>
+Set if ≠ zero</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#sra">sra</a></td><td>
+rd, rs1, rs2</td><td>
+Shift right arithmetic</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#srai">srai</a></td><td>
+rd, rs1, imm</td><td>
+Shift right arithmetic immediate</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#srai">srai</a></td><td>
+rd, rs1, imm</td><td>
+Shift right arithmetic immediate</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#sraiw">sraiw</a></td><td>
+rd, rs1, imm</td><td>
+Shift right arithmetic word immediate</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#sraw">sraw</a></td><td>
+rd, rs1, rs2</td><td>
+Shift right arithmetic word</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#srl">srl</a></td><td>
+rd, rs1, rs2</td><td>
+Shift right logical</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#srli">srli</a></td><td>
+rd, rs1, imm</td><td>
+Shift right logical immediate</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#srli">srli</a></td><td>
+rd, rs1, imm</td><td>
+Shift right logical immediate</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#srliw">srliw</a></td><td>
+rd, rs1, imm</td><td>
+Shift right logical word immediate</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#srlw">srlw</a></td><td>
+rd, rs1, rs2</td><td>
+Shift right logical word</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#sub">sub</a></td><td>
+rd, rs1, rs2</td><td>
+Subtract</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#subw">subw</a></td><td>
+rd, rs1, rs2</td><td>
+Subtract word</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#sw">sw</a></td><td>
+rs2, imm(rs1)</td><td>
+Store word</td></tr>
+<tr><td>
+tail</td><td>
+imm</td><td>
+Tail call far-away subroutine</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#xor">xor</a></td><td>
+rd, rs1, rs2</td><td>
+Exclusive OR</td></tr>
+<tr><td>
+<a href="https://www.robalni.org/riscv/instructions.html#xori">xori</a></td><td>
+rd, rs1, imm</td><td>
+Exclusive OR immediate</td></tr>
+</tbody></table>
+
+<h2 id="instructions">Hardware Instructions</h2>
+
+<p>These are the instructions that your processor decodes and executes.</p>
+
+<hr>
+
+<div class="instruction" id="add">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>add</strong> rd, rs1, rs2</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+rs2[4:0] reg(R)<br>
+</p>
+<p>Add. Add <code>rs1</code> and <code>rs2</code> and put the result in <code>rd</code>. Arithmetic overflow is ignored.</p> <pre class="code"><code>x[rd] = x[rs1] + x[rs2]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0000000</td><td>rs2</td><td>rs1</td><td>000</td><td>rd</td><td>0110011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="addi">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>addi</strong> rd, rs1, imm</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+imm[11:0] const<br>
+</p>
+<p>Add immediate. Add <code>rs1</code> and <code>imm</code> and put the result in <code>rd</code>. Arithmetic overflow is ignored.</p> <pre class="code"><code>x[rd] = x[rs1] + sext(imm)</code></pre>
+<table class="enctable I">
+<tbody><tr><td>31 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>imm[11:0]</td><td>rs1</td><td>000</td><td>rd</td><td>0010011</td></tr>
+<tr><td>12</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="addiw">
+<p class="right">RV64I</p>
+<p><big><strong>addiw</strong> rd, rs1, imm</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+imm[11:0] const<br>
+</p>
+<p>Add word immediate. Add <code>rs1</code> and <code>imm</code> and put the result in <code>rd</code>. Arithmetic overflow is ignored.</p> <pre class="code"><code>x[rd] = sext((x[rs1] + sext(imm))[31:0])</code></pre>
+<table class="enctable I">
+<tbody><tr><td>31 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>imm[11:0]</td><td>rs1</td><td>000</td><td>rd</td><td>0011011</td></tr>
+<tr><td>12</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="addw">
+<p class="right">RV64I</p>
+<p><big><strong>addw</strong> rd, rs1, rs2</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+rs2[4:0] reg(R)<br>
+</p>
+<p>Add word. Add <code>rs1</code> and <code>rs2</code> and put the result in <code>rd</code>. Arithmetic overflow is ignored.</p> <pre class="code"><code>x[rd] = sext((x[rs1] + x[rs2])[31:0])</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0000000</td><td>rs2</td><td>rs1</td><td>000</td><td>rd</td><td>0111011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="amoadd.d">
+<p class="right">RV64A</p>
+<p><big><strong>amoadd.d</strong> rd, rs2, (rs1)</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)+mem(RW)<br>
+rs2[4:0] reg(R)<br>
+aq[0] const<br>
+rl[0] const<br>
+</p>
+<p>Atomic add doubleword. Atomically load the value at address <code>rs1</code> into <code>rd</code>, add <code>rd</code> and <code>rs2</code> and put the result in memory at address <code>rs1</code>. Arithmetic overflow is ignored.</p><p>The address in <code>rs1</code> must be aligned to 8 bytes.</p><pre class="code"><code>x[rd] = M[x[rs1]][63:0]
+M[x[rs1]] = (x[rd] + x[rs2])[63:0]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>00000, aq, rl</td><td>rs2</td><td>rs1</td><td>011</td><td>rd</td><td>0101111</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#add">add</a></p></div>
+
+<hr>
+<div class="instruction" id="amoadd.w">
+<p class="right">RV32A, RV64A</p>
+<p><big><strong>amoadd.w</strong> rd, rs2, (rs1)</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)+mem(RW)<br>
+rs2[4:0] reg(R)<br>
+aq[0] const<br>
+rl[0] const<br>
+</p>
+<p>Atomic add word. Atomically load the value at address <code>rs1</code> into <code>rd</code>, add <code>rd</code> and <code>rs2</code> and put the result in memory at address <code>rs1</code>. Arithmetic overflow is ignored.</p><p>The address in <code>rs1</code> must be aligned to 4 bytes.</p><pre class="code"><code>x[rd] = sext(M[x[rs1]][31:0])
+M[x[rs1]] = (M[x[rs1]][31:0] + x[rs2])[31:0]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>00000, aq, rl</td><td>rs2</td><td>rs1</td><td>010</td><td>rd</td><td>0101111</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#addw">addw</a></p></div>
+
+<hr>
+<div class="instruction" id="amoand.d">
+<p class="right">RV64A</p>
+<p><big><strong>amoand.d</strong> rd, rs2, (rs1)</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)+mem(RW)<br>
+rs2[4:0] reg(R)<br>
+aq[0] const<br>
+rl[0] const<br>
+</p>
+<p>Atomic AND doubleword. Atomically load the value at address <code>rs1</code> into <code>rd</code>, calculate the bitwise AND on <code>rd</code> and <code>rs2</code> and put the result in memory at address <code>rs1</code>.</p><p>The address in <code>rs1</code> must be aligned to 8 bytes.</p><pre class="code"><code>x[rd] = sext(M[x[rs1]][63:0])
+M[x[rs1]] = (M[x[rs1]][63:0] &amp; x[rs2])[63:0]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>01100, aq, rl</td><td>rs2</td><td>rs1</td><td>011</td><td>rd</td><td>0101111</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#and">and</a></p></div>
+
+<hr>
+<div class="instruction" id="amoand.w">
+<p class="right">RV32A, RV64A</p>
+<p><big><strong>amoand.w</strong> rd, rs2, (rs1)</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)+mem(RW)<br>
+rs2[4:0] reg(R)<br>
+aq[0] const<br>
+rl[0] const<br>
+</p>
+<p>Atomic AND word. Atomically load the value at address <code>rs1</code> into <code>rd</code>, calculate the bitwise AND on <code>rd</code> and <code>rs2</code> and put the result in memory at address <code>rs1</code>.</p><p>The address in <code>rs1</code> must be aligned to 4 bytes.</p><pre class="code"><code>x[rd] = sext(M[x[rs1]][31:0])
+M[x[rs1]] = (M[x[rs1]][31:0] &amp; x[rs2])[31:0]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>01100, aq, rl</td><td>rs2</td><td>rs1</td><td>010</td><td>rd</td><td>0101111</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#and">and</a></p></div>
+
+<hr>
+<div class="instruction" id="amomax.d">
+<p class="right">RV64A</p>
+<p><big><strong>amomax.d</strong> rd, rs2, (rs1)</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)+mem(RW)<br>
+rs2[4:0] reg(R)<br>
+aq[0] const<br>
+rl[0] const<br>
+</p>
+<p>Atomic maximum doubleword. Atomically load the value at address <code>rs1</code> into <code>rd</code>, calculate the maximum value of <code>rd</code> and <code>rs2</code> and put the result in memory at address <code>rs1</code>.</p><p>The address in <code>rs1</code> must be aligned to 8 bytes.</p><pre class="code"><code>x[rd] = sext(M[x[rs1]][63:0])
+M[x[rs1]] = max(M[x[rs1]][63:0], x[rs2])[63:0]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>10100, aq, rl</td><td>rs2</td><td>rs1</td><td>011</td><td>rd</td><td>0101111</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="amomaxu.d">
+<p class="right">RV64A</p>
+<p><big><strong>amomaxu.d</strong> rd, rs2, (rs1)</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)+mem(RW)<br>
+rs2[4:0] reg(R)<br>
+aq[0] const<br>
+rl[0] const<br>
+</p>
+<p>Atomic unsigned maximum word. Atomically load the value at address <code>rs1</code> into <code>rd</code>, calculate the unsigned maximum value of <code>rd</code> and <code>rs2</code> and put the result in memory at address <code>rs1</code>.</p><p>The address in <code>rs1</code> must be aligned to 8 bytes.</p><pre class="code"><code>x[rd] = sext(M[x[rs1]][63:0])
+M[x[rs1]] = max<sub>u</sub>(M[x[rs1]][63:0], x[rs2])[63:0]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>11100, aq, rl</td><td>rs2</td><td>rs1</td><td>011</td><td>rd</td><td>0101111</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="amomaxu.w">
+<p class="right">RV32A, RV64A</p>
+<p><big><strong>amomaxu.w</strong> rd, rs2, (rs1)</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)+mem(RW)<br>
+rs2[4:0] reg(R)<br>
+aq[0] const<br>
+rl[0] const<br>
+</p>
+<p>Atomic unsigned maximum word. Atomically load the value at address <code>rs1</code> into <code>rd</code>, calculate the unsigned maximum value of <code>rd</code> and <code>rs2</code> and put the result in memory at address <code>rs1</code>.</p><p>The address in <code>rs1</code> must be aligned to 4 bytes.</p><pre class="code"><code>x[rd] = sext(M[x[rs1]][31:0])
+M[x[rs1]] = max<sub>u</sub>(M[x[rs1]][31:0], x[rs2])[31:0]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>11100, aq, rl</td><td>rs2</td><td>rs1</td><td>010</td><td>rd</td><td>0101111</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="amomax.w">
+<p class="right">RV32A, RV64A</p>
+<p><big><strong>amomax.w</strong> rd, rs2, (rs1)</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)+mem(RW)<br>
+rs2[4:0] reg(R)<br>
+aq[0] const<br>
+rl[0] const<br>
+</p>
+<p>Atomic maximum word. Atomically load the value at address <code>rs1</code> into <code>rd</code>, calculate the maximum value of <code>rd</code> and <code>rs2</code> and put the result in memory at address <code>rs1</code>.</p><p>The address in <code>rs1</code> must be aligned to 4 bytes.</p><pre class="code"><code>x[rd] = sext(M[x[rs1]][31:0])
+M[x[rs1]] = max(M[x[rs1]][31:0], x[rs2])[31:0]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>10100, aq, rl</td><td>rs2</td><td>rs1</td><td>010</td><td>rd</td><td>0101111</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="amomin.d">
+<p class="right">RV64A</p>
+<p><big><strong>amomin.d</strong> rd, rs2, (rs1)</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)+mem(RW)<br>
+rs2[4:0] reg(R)<br>
+aq[0] const<br>
+rl[0] const<br>
+</p>
+<p>Atomic minimum doubleword. Atomically load the value at address <code>rs1</code> into <code>rd</code>, calculate the minimum value of <code>rd</code> and <code>rs2</code> and put the result in memory at address <code>rs1</code>.</p><p>The address in <code>rs1</code> must be aligned to 8 bytes.</p><pre class="code"><code>x[rd] = sext(M[x[rs1]][63:0])
+M[x[rs1]] = min(M[x[rs1]][63:0], x[rs2])[63:0]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>10000, aq, rl</td><td>rs2</td><td>rs1</td><td>011</td><td>rd</td><td>0101111</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="amominu.d">
+<p class="right">RV64A</p>
+<p><big><strong>amominu.d</strong> rd, rs2, (rs1)</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)+mem(RW)<br>
+rs2[4:0] reg(R)<br>
+aq[0] const<br>
+rl[0] const<br>
+</p>
+<p>Atomic unsigned minimum word. Atomically load the value at address <code>rs1</code> into <code>rd</code>, calculate the unsigned minimum value of <code>rd</code> and <code>rs2</code> and put the result in memory at address <code>rs1</code>.</p><p>The address in <code>rs1</code> must be aligned to 8 bytes.</p><pre class="code"><code>x[rd] = sext(M[x[rs1]][63:0])
+M[x[rs1]] = min<sub>u</sub>(M[x[rs1]][63:0], x[rs2])[63:0]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>11000, aq, rl</td><td>rs2</td><td>rs1</td><td>011</td><td>rd</td><td>0101111</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="amominu.w">
+<p class="right">RV32A, RV64A</p>
+<p><big><strong>amominu.w</strong> rd, rs2, (rs1)</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)+mem(RW)<br>
+rs2[4:0] reg(R)<br>
+aq[0] const<br>
+rl[0] const<br>
+</p>
+<p>Atomic unsigned minimum word. Atomically load the value at address <code>rs1</code> into <code>rd</code>, calculate the unsigned minimum value of <code>rd</code> and <code>rs2</code> and put the result in memory at address <code>rs1</code>.</p><p>The address in <code>rs1</code> must be aligned to 4 bytes.</p><pre class="code"><code>x[rd] = sext(M[x[rs1]][31:0])
+M[x[rs1]] = min<sub>u</sub>(M[x[rs1]][31:0], x[rs2])[31:0]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>11000, aq, rl</td><td>rs2</td><td>rs1</td><td>010</td><td>rd</td><td>0101111</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="amomin.w">
+<p class="right">RV32A, RV64A</p>
+<p><big><strong>amomin.w</strong> rd, rs2, (rs1)</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)+mem(RW)<br>
+rs2[4:0] reg(R)<br>
+aq[0] const<br>
+rl[0] const<br>
+</p>
+<p>Atomic minimum word. Atomically load the value at address <code>rs1</code> into <code>rd</code>, calculate the minimum value of <code>rd</code> and <code>rs2</code> and put the result in memory at address <code>rs1</code>.</p><p>The address in <code>rs1</code> must be aligned to 4 bytes.</p><pre class="code"><code>x[rd] = sext(M[x[rs1]][31:0])
+M[x[rs1]] = min(M[x[rs1]][31:0], x[rs2])[31:0]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>10000, aq, rl</td><td>rs2</td><td>rs1</td><td>010</td><td>rd</td><td>0101111</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="amoor.d">
+<p class="right">RV64A</p>
+<p><big><strong>amoor.d</strong> rd, rs2, (rs1)</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)+mem(RW)<br>
+rs2[4:0] reg(R)<br>
+aq[0] const<br>
+rl[0] const<br>
+</p>
+<p>Atomic OR doubleword. Atomically load the value at address <code>rs1</code> into <code>rd</code>, calculate the bitwise OR on <code>rd</code> and <code>rs2</code> and put the result in memory at address <code>rs1</code>.</p><p>The address in <code>rs1</code> must be aligned to 8 bytes.</p><pre class="code"><code>x[rd] = sext(M[x[rs1]][63:0])
+M[x[rs1]] = (M[x[rs1]][63:0] | x[rs2])[63:0]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>01000, aq, rl</td><td>rs2</td><td>rs1</td><td>011</td><td>rd</td><td>0101111</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#or">or</a></p></div>
+
+<hr>
+<div class="instruction" id="amoor.w">
+<p class="right">RV32A, RV64A</p>
+<p><big><strong>amoor.w</strong> rd, rs2, (rs1)</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)+mem(RW)<br>
+rs2[4:0] reg(R)<br>
+aq[0] const<br>
+rl[0] const<br>
+</p>
+<p>Atomic OR word. Atomically load the value at address <code>rs1</code> into <code>rd</code>, calculate the bitwise OR on <code>rd</code> and <code>rs2</code> and put the result in memory at address <code>rs1</code>.</p><p>The address in <code>rs1</code> must be aligned to 4 bytes.</p><pre class="code"><code>x[rd] = sext(M[x[rs1]][31:0])
+M[x[rs1]] = (M[x[rs1]][31:0] | x[rs2])[31:0]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>01000, aq, rl</td><td>rs2</td><td>rs1</td><td>010</td><td>rd</td><td>0101111</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#or">or</a></p></div>
+
+<hr>
+<div class="instruction" id="amoswap.d">
+<p class="right">RV64A</p>
+<p><big><strong>amoswap.d</strong> rd, rs2, (rs1)</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)+mem(RW)<br>
+rs2[4:0] reg(R)<br>
+aq[0] const<br>
+rl[0] const<br>
+</p>
+<p>Atomic swap doubleword. Atomically load the value at address <code>rs1</code> into <code>rd</code> and write the value of <code>rs2</code> to address <code>rs1</code>.</p><p>The address in <code>rs1</code> must be aligned to 8 bytes.</p><pre class="code"><code>x[rd] = sext(M[x[rs1]][63:0])
+M[x[rs1]] = x[rs2][63:0]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>00001, aq, rl</td><td>rs2</td><td>rs1</td><td>011</td><td>rd</td><td>0101111</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="amoswap.w">
+<p class="right">RV32A, RV64A</p>
+<p><big><strong>amoswap.w</strong> rd, rs2, (rs1)</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)+mem(RW)<br>
+rs2[4:0] reg(R)<br>
+aq[0] const<br>
+rl[0] const<br>
+</p>
+<p>Atomic swap word. Atomically load the value at address <code>rs1</code> into <code>rd</code> and write the value of <code>rs2</code> to address <code>rs1</code>.</p><p>The address in <code>rs1</code> must be aligned to 4 bytes.</p><pre class="code"><code>x[rd] = sext(M[x[rs1]][31:0])
+M[x[rs1]] = x[rs2][31:0]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>00001, aq, rl</td><td>rs2</td><td>rs1</td><td>010</td><td>rd</td><td>0101111</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="amoxor.d">
+<p class="right">RV64A</p>
+<p><big><strong>amoxor.d</strong> rd, rs2, (rs1)</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)+mem(RW)<br>
+rs2[4:0] reg(R)<br>
+aq[0] const<br>
+rl[0] const<br>
+</p>
+<p>Atomic XOR doubleword. Atomically load the value at address <code>rs1</code> into <code>rd</code>, calculate the bitwise XOR on <code>rd</code> and <code>rs2</code> and put the result in memory at address <code>rs1</code>.</p><p>The address in <code>rs1</code> must be aligned to 8 bytes.</p><pre class="code"><code>x[rd] = sext(M[x[rs1]][63:0])
+M[x[rs1]] = (M[x[rs1]][63:0] ^ x[rs2])[63:0]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>00100, aq, rl</td><td>rs2</td><td>rs1</td><td>011</td><td>rd</td><td>0101111</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#xor">xor</a></p></div>
+
+<hr>
+<div class="instruction" id="amoxor.w">
+<p class="right">RV32A, RV64A</p>
+<p><big><strong>amoxor.w</strong> rd, rs2, (rs1)</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)+mem(RW)<br>
+rs2[4:0] reg(R)<br>
+aq[0] const<br>
+rl[0] const<br>
+</p>
+<p>Atomic XOR word. Atomically load the value at address <code>rs1</code> into <code>rd</code>, calculate the bitwise XOR on <code>rd</code> and <code>rs2</code> and put the result in memory at address <code>rs1</code>.</p><p>The address in <code>rs1</code> must be aligned to 4 bytes.</p><pre class="code"><code>x[rd] = sext(M[x[rs1]][31:0])
+M[x[rs1]] = (M[x[rs1]][31:0] ^ x[rs2])[31:0]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>00100, aq, rl</td><td>rs2</td><td>rs1</td><td>010</td><td>rd</td><td>0101111</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#xor">xor</a></p></div>
+
+<hr>
+<div class="instruction" id="and">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>and</strong> rd, rs1, rs2</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+rs2[4:0] reg(R)<br>
+</p>
+<p>AND. Calculate bitwise AND on <code>rs1</code> and <code>rs2</code> and put the result in <code>rd</code>.</p> <pre class="code"><code>x[rd] = x[rs1] &amp; x[rs2]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0000000</td><td>rs2</td><td>rs1</td><td>111</td><td>rd</td><td>0110011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="andi">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>andi</strong> rd, rs1, imm</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+imm[11:0] const<br>
+</p>
+<p>AND immediate. Calculate bitwise AND on <code>rs1</code> and <code>imm</code> and put the result in <code>rd</code>.</p> <pre class="code"><code>x[rd] = x[rs1] &amp; sext(imm)</code></pre>
+<table class="enctable I">
+<tbody><tr><td>31 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>imm[11:0]</td><td>rs1</td><td>111</td><td>rd</td><td>0010011</td></tr>
+<tr><td>12</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="auipc">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>auipc</strong> rd, imm[31:12]</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+imm[31:12] const<br>
+</p>
+<p>Add upper immediate to <code>pc</code>. Can be used to build addresses relative to program counter. Add <code>imm</code> (with lower 12 bits = 0) and <code>pc</code> and put the result in <code>rd</code>.</p> <pre class="code"><code>x[rd] = pc + sext(imm[31:12] &lt;&lt; 12)</code></pre>
+<table class="enctable U">
+<tbody><tr><td>31 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>imm[31:12]</td><td>rd</td><td>0010111</td></tr>
+<tr><td>20</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#lui">lui</a></p></div>
+
+<hr>
+<div class="instruction" id="beq">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>beq</strong> rs1, rs2, imm</big></p>
+<p class="params">
+rs1[4:0] reg(R)<br>
+rs2[4:0] reg(R)<br>
+imm[12:1] const<br>
+</p>
+<p>Branch if =. Add <code>imm</code> (multiple of 2) to <code>pc</code> if <code>rs1</code> and <code>rs2</code> are equal.</p> <pre class="code"><code>if (x[rs1] == x[rs2]) pc += sext(imm)</code></pre>
+<table class="enctable B">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>imm[12,10:5]</td><td>rs2</td><td>rs1</td><td>000</td><td>imm[4:1,11]</td><td>1100011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="bge">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>bge</strong> rs1, rs2, imm</big></p>
+<p class="params">
+rs1[4:0] reg(R)<br>
+rs2[4:0] reg(R)<br>
+imm[12:1] const<br>
+</p>
+<p>Branch if ≥. Add <code>imm</code> (multiple of 2) to <code>pc</code> if <code>rs1</code> is greater than (signed) or equal to <code>rs2</code>.</p> <pre class="code"><code>if (x[rs1] ≥<sub>s</sub> x[rs2]) pc += sext(imm)</code></pre>
+<table class="enctable B">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>imm[12,10:5]</td><td>rs2</td><td>rs1</td><td>101</td><td>imm[4:1,11]</td><td>1100011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="bgeu">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>bgeu</strong> rs1, rs2, imm</big></p>
+<p class="params">
+rs1[4:0] reg(R)<br>
+rs2[4:0] reg(R)<br>
+imm[12:1] const<br>
+</p>
+<p>Branch if ≥, unsigned. Add <code>imm</code> (multiple of 2) to <code>pc</code> if <code>rs1</code> is greater than (unsigned) or equal to <code>rs2</code>.</p> <pre class="code"><code>if (x[rs1] ≥<sub>u</sub> x[rs2]) pc += sext(imm)</code></pre>
+<table class="enctable B">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>imm[12,10:5]</td><td>rs2</td><td>rs1</td><td>111</td><td>imm[4:1,11]</td><td>1100011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="blt">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>blt</strong> rs1, rs2, imm</big></p>
+<p class="params">
+rs1[4:0] reg(R)<br>
+rs2[4:0] reg(R)<br>
+imm[12:1] const<br>
+</p>
+<p>Branch if &lt;. Add <code>imm</code> (multiple of 2) to <code>pc</code> if <code>rs1</code> is less than (signed) <code>rs2</code>.</p> <pre class="code"><code>if (x[rs1] &lt;<sub>s</sub> x[rs2]) pc += sext(imm)</code></pre>
+<table class="enctable B">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>imm[12,10:5]</td><td>rs2</td><td>rs1</td><td>100</td><td>imm[4:1,11]</td><td>1100011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="bltu">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>bltu</strong> rs1, rs2, imm</big></p>
+<p class="params">
+rs1[4:0] reg(R)<br>
+rs2[4:0] reg(R)<br>
+imm[12:1] const<br>
+</p>
+<p>Branch if &lt;, unsigned. Add <code>imm</code> (multiple of 2) to <code>pc</code> if <code>rs1</code> is less than (unsigned) <code>rs2</code>.</p> <pre class="code"><code>if (x[rs1] &lt;<sub>u</sub> x[rs2]) pc += sext(imm)</code></pre>
+<table class="enctable B">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>imm[12,10:5]</td><td>rs2</td><td>rs1</td><td>110</td><td>imm[4:1,11]</td><td>1100011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="bne">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>bne</strong> rs1, rs2, imm</big></p>
+<p class="params">
+rs1[4:0] reg(R)<br>
+rs2[4:0] reg(R)<br>
+imm[12:1] const<br>
+</p>
+<p>Branch if ≠. Add <code>imm</code> (multiple of 2) to <code>pc</code> if <code>rs1</code> and <code>rs2</code> are not equal.</p> <pre class="code"><code>if (x[rs1] ≠ x[rs2]) pc += sext(imm)</code></pre>
+<table class="enctable B">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>imm[12,10:5]</td><td>rs2</td><td>rs1</td><td>001</td><td>imm[4:1,11]</td><td>1100011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="csrrc">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>csrrc</strong> rd csr rs1</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+csr[11:0] reg(RW)<br>
+rs1[4:0] reg(R)<br>
+</p>
+<p>Control and status register read and clear. Atomically writes the old value of <code>csr</code> to <code>rd</code> and clears the <code>csr</code> bits that are set in <code>rs1</code>. Unwritable bits in <code>csr</code> are unaffected.</p> <p>If <code>rs1</code> is <code>x0</code> then <code>csr</code> is not written to and no side effects from writing to it will occur (this is not the same when <code>rs1</code> is another register that holds value 0).</p> <pre class="code"><code>t = CSRs[csr]
+CSRs[csr] = t &amp; ∼x[rs1]
+x[rd] = t</code></pre>
+<table class="enctable I">
+<tbody><tr><td>31 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>csr</td><td>rs1</td><td>011</td><td>rd</td><td>1110011</td></tr>
+<tr><td>12</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="csrrci">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>csrrci</strong> rd csr imm[4:0]</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+csr[11:0] reg(RW)<br>
+imm[4:0] const<br>
+</p>
+<p>Control and status register read and clear immediate. Atomically writes the old value of <code>csr</code> to <code>rd</code> and clears the <code>csr</code> bits that are set in <code>imm</code>. Unwritable bits in <code>csr</code> are unaffected.</p> <p>If <code>imm</code> is 0 then <code>csr</code> is not written to and no side effects from writing to it will occur.</p> <pre class="code"><code>t = CSRs[csr]
+CSRs[csr] = t &amp; ∼imm
+x[rd] = t</code></pre>
+<table class="enctable I">
+<tbody><tr><td>31 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>csr</td><td>imm</td><td>111</td><td>rd</td><td>1110011</td></tr>
+<tr><td>12</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="csrrs">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>csrrs</strong> rd, csr, rs1</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+csr[11:0] reg(RW)<br>
+rs1[4:0] reg(R)<br>
+</p>
+<p>Control and status register read and set. Atomically writes the old value of <code>csr</code> to <code>rd</code> and sets the <code>csr</code> bits that are set in <code>rs1</code>. Unwritable bits in <code>csr</code> are unaffected.</p> <p>If <code>rs1</code> is <code>x0</code> then <code>csr</code> is not written to and no side effects from writing to it will occur (this is not the same when <code>rs1</code> is another register that holds value 0).</p> <pre class="code"><code>t = CSRs[csr]
+CSRs[csr] = t | x[rs1]
+x[rd] = t</code></pre>
+<table class="enctable I">
+<tbody><tr><td>31 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>csr</td><td>rs1</td><td>010</td><td>rd</td><td>1110011</td></tr>
+<tr><td>12</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="csrrsi">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>csrrsi</strong> rd, csr, imm[4:0]</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+csr[11:0] reg(RW)<br>
+imm[4:0] const<br>
+</p>
+<p>Control and status register read and set immediate. Atomically writes the old value of <code>csr</code> to <code>rd</code> and sets the <code>csr</code> bits that are set in <code>imm</code>. Unwritable bits in <code>csr</code> are unaffected.</p> <p>If <code>imm</code> is 0 then <code>csr</code> is not written to and no side effects from writing to it will occur.</p> <pre class="code"><code>t = CSRs[csr]
+CSRs[csr] = t | imm
+x[rd] = t</code></pre>
+<table class="enctable I">
+<tbody><tr><td>31 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>csr</td><td>imm</td><td>110</td><td>rd</td><td>1110011</td></tr>
+<tr><td>12</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="csrrw">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>csrrw</strong> rd, csr, rs1</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+csr[11:0] reg(RW)<br>
+rs1[4:0] reg(R)<br>
+</p>
+<p>Control and status register read and write. Atomically writes the old value of <code>csr</code> to <code>rd</code> and <code>rs1</code> to <code>csr</code>.</p> <p>If <code>rd</code> is <code>x0</code> then <code>csr</code> is not read and no side effects from reading it will occur.</p> <pre class="code"><code>t = CSRs[csr]
+CSRs[csr] = x[rs1]
+x[rd] = t</code></pre>
+<table class="enctable I">
+<tbody><tr><td>31 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>csr</td><td>rs1</td><td>001</td><td>rd</td><td>1110011</td></tr>
+<tr><td>12</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="csrrwi">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>csrrwi</strong> rd, csr, imm[4:0]</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+csr[11:0] reg(RW)<br>
+imm[4:0] const<br>
+</p>
+<p>Control and status register read and write immediate. Atomically writes the old value of <code>csr</code> to <code>rd</code> and <code>imm</code> to <code>csr</code>.</p> <p>If <code>rd</code> is <code>x0</code> then <code>csr</code> is not read and no side effects from reading it will occur.</p> <pre class="code"><code>t = CSRs[csr]
+CSRs[csr] = imm
+x[rd] = t</code></pre>
+<table class="enctable I">
+<tbody><tr><td>31 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>csr</td><td>imm</td><td>101</td><td>rd</td><td>1110011</td></tr>
+<tr><td>12</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="div">
+<p class="right">RV32M, RV64M</p>
+<p><big><strong>div</strong> rd, rs1, rs2</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+rs2[4:0] reg(R)<br>
+</p>
+<p>Divide. Divide <code>rs1</code> by <code>rs2</code> and put the result (rounded towards zero) in <code>rd</code>.</p> <pre class="code"><code>x[rd] = x[rs1] /<sub>s</sub> x[rs2]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0000001</td><td>rs2</td><td>rs1</td><td>100</td><td>rd</td><td>0110011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#rem">rem</a></p></div>
+
+<hr>
+<div class="instruction" id="divu">
+<p class="right">RV32M, RV64M</p>
+<p><big><strong>divu</strong> rd, rs1, rs2</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+rs2[4:0] reg(R)<br>
+</p>
+<p>Divide unsigned. Divide unsigned <code>rs1</code> by unsigned <code>rs2</code> and put the result (rounded towards zero) in <code>rd</code>.</p> <pre class="code"><code>x[rd] = x[rs1] /<sub>u</sub> x[rs2]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0000001</td><td>rs2</td><td>rs1</td><td>101</td><td>rd</td><td>0110011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#remu">remu</a></p></div>
+
+<hr>
+<div class="instruction" id="divuw">
+<p class="right">RV64M</p>
+<p><big><strong>divuw</strong> rd, rs1, rs2</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+rs2[4:0] reg(R)<br>
+</p>
+<p>Divide unsigned word. Divide the lower 32 bits of unsigned <code>rs1</code> by the lower 32 bits of unsigned <code>rs2</code> and put the result (rounded towards zero) in <code>rd</code>.</p> <pre class="code"><code>x[rd] = x[rs1][31:0] /<sub>u</sub> x[rs2][31:0]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0000001</td><td>rs2</td><td>rs1</td><td>101</td><td>rd</td><td>0111011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#remuw">remuw</a></p></div>
+
+<hr>
+<div class="instruction" id="divw">
+<p class="right">RV64M</p>
+<p><big><strong>divw</strong> rd, rs1, rs2</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+rs2[4:0] reg(R)<br>
+</p>
+<p>Divide word. Divide the lower 32 bits of <code>rs1</code> by the lower 32 bits of <code>rs2</code> and put the result (rounded towards zero) in <code>rd</code>.</p> <pre class="code"><code>x[rd] = x[rs1][31:0] /<sub>s</sub> x[rs2][31:0]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0000001</td><td>rs2</td><td>rs1</td><td>100</td><td>rd</td><td>0111011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#remw">remw</a></p></div>
+
+<hr>
+<div class="instruction" id="ebreak">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>ebreak</strong> </big></p>
+<p class="params">
+</p>
+<p>Environment breakpoint. Used by debuggers to cause control to be transferred back to the debugger.</p><p> </p><pre class="code"><code>RaiseException(Breakpoint)</code></pre>
+<table class="enctable I">
+<tbody><tr><td>31 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>000000000001</td><td>00000</td><td>000</td><td>00000</td><td>1110011</td></tr>
+<tr><td>12</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="ecall">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>ecall</strong> </big></p>
+<p class="params">
+</p>
+<p>Environment call. Make a request to the supporting execution environment (usually the operating system).</p> <pre class="code"><code>RaiseException(EnvironmentCall)</code></pre>
+<table class="enctable I">
+<tbody><tr><td>31 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>000000000000</td><td>00000</td><td>000</td><td>00000</td><td>1110011</td></tr>
+<tr><td>12</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fadd.d">
+<p class="right">RV32D, RV64D</p>
+<p><big><strong>fadd.d</strong> fd, fs1, fs2</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+fs2[4:0] reg(R)<br>
+rm[2:0] const<br>
+</p>
+<p>Add double-precision floating-point.  Calculate fs1+fs2 and put the result in fd.  </p><p>The <a href="https://www.robalni.org/riscv/instructions.html#field_rm">rm</a> field is rounding mode.</p><pre class="code"><code>f[fd] = f[fs1] + f[fs2]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0000001</td><td>fs2</td><td>fs1</td><td>rm</td><td>fd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fadd.s">
+<p class="right">RV32F, RV64F</p>
+<p><big><strong>fadd.s</strong> fd, fs1, fs2</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+fs2[4:0] reg(R)<br>
+rm[2:0] const<br>
+</p>
+<p>Add single-precision floating-point.  Calculate fs1+fs2 and put the result in fd.  </p><p>The <a href="https://www.robalni.org/riscv/instructions.html#field_rm">rm</a> field is rounding mode.</p><pre class="code"><code>f[fd] = f[fs1] + f[fs2]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0000000</td><td>fs2</td><td>fs1</td><td>rm</td><td>fd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fclass.d">
+<p class="right">RV32D, RV64D</p>
+<p><big><strong>fclass.d</strong> rd, fs</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+fs[4:0] reg(R)<br>
+</p>
+<p>Classify double-precision floating-point.  Set flags in rd depending on the properties of fs.  Other bits are set to 0.</p> <table><tbody><tr><th>rd bit</th><th>Meaning</th></tr><tr><td>0</td><td>fs is -infinity</td></tr><tr><td>1</td><td>fs is a negative normal number</td></tr><tr><td>2</td><td>fs is a negative subnormal number</td></tr><tr><td>3</td><td>fs is -0</td></tr><tr><td>4</td><td>fs is +0</td></tr><tr><td>5</td><td>fs is a positive subnormal number</td></tr><tr><td>6</td><td>fs is a positive normal number</td></tr><tr><td>7</td><td>fs is +infinity</td></tr><tr><td>8</td><td>fs is a signaling NaN</td></tr><tr><td>9</td><td>fs is a quiet NaN</td></tr></tbody></table><pre class="code"><code>r[rd] = Classify(f[fs])</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>1110001</td><td>00000</td><td>fs</td><td>001</td><td>rd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fclass.s">
+<p class="right">RV32F, RV64F</p>
+<p><big><strong>fclass.s</strong> rd, fs</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+fs[4:0] reg(R)<br>
+</p>
+<p>Classify single-precision floating-point.  Set flags in rd depending on the properties of fs.  Other bits are set to 0.</p> <table><tbody><tr><th>rd bit</th><th>Meaning</th></tr><tr><td>0</td><td>fs is -infinity</td></tr><tr><td>1</td><td>fs is a negative normal number</td></tr><tr><td>2</td><td>fs is a negative subnormal number</td></tr><tr><td>3</td><td>fs is -0</td></tr><tr><td>4</td><td>fs is +0</td></tr><tr><td>5</td><td>fs is a positive subnormal number</td></tr><tr><td>6</td><td>fs is a positive normal number</td></tr><tr><td>7</td><td>fs is +infinity</td></tr><tr><td>8</td><td>fs is a signaling NaN</td></tr><tr><td>9</td><td>fs is a quiet NaN</td></tr></tbody></table><pre class="code"><code>r[rd] = Classify(f[fs])</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>1110000</td><td>00000</td><td>fs</td><td>001</td><td>rd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fcvt.d.l">
+<p class="right">RV64D</p>
+<p><big><strong>fcvt.d.l</strong> fd, rs1</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+rm[2:0] const<br>
+</p>
+<p>Convert 64-bit integer to double-precision floating-point.</p> <p>The <a href="https://www.robalni.org/riscv/instructions.html#field_rm">rm</a> field is rounding mode.</p><pre class="code"><code>f[fd] = 1ext(i64_to_f32(x[rs1]))</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>1101001</td><td>00010</td><td>rs1</td><td>rm</td><td>fd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fcvt.d.lu">
+<p class="right">RV64D</p>
+<p><big><strong>fcvt.d.lu</strong> fd, rs1</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+rm[2:0] const<br>
+</p>
+<p>Convert 64-bit unsigned integer to double-precision floating-point.</p> <p>The <a href="https://www.robalni.org/riscv/instructions.html#field_rm">rm</a> field is rounding mode.</p><pre class="code"><code>f[fd] = 1ext(u64_to_f32(x[rs1]))</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>1101001</td><td>00011</td><td>rs1</td><td>rm</td><td>fd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fcvt.d.s">
+<p class="right">RV64D</p>
+<p><big><strong>fcvt.d.s</strong> fd, fs1</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+rm[2:0] const<br>
+</p>
+<p>Convert single-precision to double-precision floating-point.</p> <p>The <a href="https://www.robalni.org/riscv/instructions.html#field_rm">rm</a> field is rounding mode.</p><pre class="code"><code>f[fd] = 1ext(f32_to_f64(f[fs1][31:0]))</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0100001</td><td>00000</td><td>fs1</td><td>rm</td><td>fd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#fcvt.s.d">fcvt.s.d</a></p></div>
+
+<hr>
+<div class="instruction" id="fcvt.d.w">
+<p class="right">RV32D, RV64D</p>
+<p><big><strong>fcvt.d.w</strong> fd, rs1</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+rm[2:0] const<br>
+</p>
+<p>Convert 32-bit integer to double-precision floating-point.</p> <p>The <a href="https://www.robalni.org/riscv/instructions.html#field_rm">rm</a> field is rounding mode.</p><pre class="code"><code>f[fd] = 1ext(i32_to_f32(x[rs1][31:0]))</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>1101001</td><td>00000</td><td>rs1</td><td>rm</td><td>fd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fcvt.d.wu">
+<p class="right">RV32D, RV64D</p>
+<p><big><strong>fcvt.d.wu</strong> fd, rs1</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+rm[2:0] const<br>
+</p>
+<p>Convert 32-bit unsigned integer to double-precision floating-point.</p> <p>The <a href="https://www.robalni.org/riscv/instructions.html#field_rm">rm</a> field is rounding mode.</p><pre class="code"><code>f[fd] = 1ext(u32_to_f32(x[rs1][31:0]))</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>1101001</td><td>00001</td><td>rs1</td><td>rm</td><td>fd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fcvt.l.d">
+<p class="right">RV64D</p>
+<p><big><strong>fcvt.l.d</strong> rd, fs1</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+rm[2:0] const<br>
+</p>
+<p>Convert double-precision floating-point to 64-bit integer.</p> <p>Out of bounds results are clamped between minimum and maximum 64-bit signed integer values and the invalid flag is set.  NaN counts as positive infinity.</p> <p>The <a href="https://www.robalni.org/riscv/instructions.html#field_rm">rm</a> field is rounding mode.</p><pre class="code"><code>x[rd] = f64_to_i64(f[fs1])</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>1100001</td><td>00010</td><td>fs1</td><td>rm</td><td>rd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fcvt.l.s">
+<p class="right">RV64F</p>
+<p><big><strong>fcvt.l.s</strong> rd, fs1</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+rm[2:0] const<br>
+</p>
+<p>Convert single-precision floating-point to 64-bit integer.</p> <p>Out of bounds results are clamped between minimum and maximum 64-bit signed integer values and the invalid flag is set.  NaN counts as positive infinity.</p> <p>The <a href="https://www.robalni.org/riscv/instructions.html#field_rm">rm</a> field is rounding mode.</p><pre class="code"><code>x[rd] = f32_to_i64(f[fs1])</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>1100000</td><td>00010</td><td>fs1</td><td>rm</td><td>rd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fcvt.lu.d">
+<p class="right">RV64D</p>
+<p><big><strong>fcvt.lu.d</strong> rd, fs1</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+rm[2:0] const<br>
+</p>
+<p>Convert double-precision floating-point to unsigned 64-bit integer.</p> <p>Out of bounds results are clamped between minimum and maximum 64-bit unsigned integer values and the invalid flag is set.  NaN counts as positive infinity.</p> <p>The <a href="https://www.robalni.org/riscv/instructions.html#field_rm">rm</a> field is rounding mode.</p><pre class="code"><code>x[rd] = f32_to_u64(f[fs1])</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>1100001</td><td>00011</td><td>fs1</td><td>rm</td><td>rd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fcvt.lu.s">
+<p class="right">RV64F</p>
+<p><big><strong>fcvt.lu.s</strong> rd, fs1</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+rm[2:0] const<br>
+</p>
+<p>Convert single-precision floating-point to unsigned 64-bit integer.</p> <p>Out of bounds results are clamped between minimum and maximum 64-bit unsigned integer values and the invalid flag is set.  NaN counts as positive infinity.</p> <p>The <a href="https://www.robalni.org/riscv/instructions.html#field_rm">rm</a> field is rounding mode.</p><pre class="code"><code>x[rd] = f32_to_u64(f[fs1])</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>1100000</td><td>00011</td><td>fs1</td><td>rm</td><td>rd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fcvt.s.d">
+<p class="right">RV64D</p>
+<p><big><strong>fcvt.s.d</strong> fd, fs1</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+rm[2:0] const<br>
+</p>
+<p>Convert double-precision to single-precision floating-point.</p> <p>The <a href="https://www.robalni.org/riscv/instructions.html#field_rm">rm</a> field is rounding mode.</p><pre class="code"><code>f[fd] = 1ext(f64_to_f632(f[fs1][63:0]))</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0100000</td><td>00001</td><td>fs1</td><td>rm</td><td>fd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#fcvt.d.s">fcvt.d.s</a></p></div>
+
+<hr>
+<div class="instruction" id="fcvt.s.l">
+<p class="right">RV64F</p>
+<p><big><strong>fcvt.s.l</strong> fd, rs1</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+rm[2:0] const<br>
+</p>
+<p>Convert 64-bit integer to single-precision floating-point.</p> <p>The <a href="https://www.robalni.org/riscv/instructions.html#field_rm">rm</a> field is rounding mode.</p><pre class="code"><code>f[fd] = 1ext(i64_to_f32(x[rs1]))</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>1101000</td><td>00010</td><td>rs1</td><td>rm</td><td>fd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fcvt.s.lu">
+<p class="right">RV64F</p>
+<p><big><strong>fcvt.s.lu</strong> fd, rs1</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+rm[2:0] const<br>
+</p>
+<p>Convert 64-bit unsigned integer to single-precision floating-point.</p> <p>The <a href="https://www.robalni.org/riscv/instructions.html#field_rm">rm</a> field is rounding mode.</p><pre class="code"><code>f[fd] = 1ext(u64_to_f32(x[rs1]))</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>1101000</td><td>00011</td><td>rs1</td><td>rm</td><td>fd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fcvt.s.w">
+<p class="right">RV32F, RV64F</p>
+<p><big><strong>fcvt.s.w</strong> fd, rs1</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+rm[2:0] const<br>
+</p>
+<p>Convert 32-bit integer to single-precision floating-point.</p> <p>The <a href="https://www.robalni.org/riscv/instructions.html#field_rm">rm</a> field is rounding mode.</p><pre class="code"><code>f[fd] = 1ext(i32_to_f32(x[rs1][31:0]))</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>1101000</td><td>00000</td><td>rs1</td><td>rm</td><td>fd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fcvt.s.wu">
+<p class="right">RV32F, RV64F</p>
+<p><big><strong>fcvt.s.wu</strong> fd, rs1</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+rm[2:0] const<br>
+</p>
+<p>Convert 32-bit unsigned integer to single-precision floating-point.</p> <p>The <a href="https://www.robalni.org/riscv/instructions.html#field_rm">rm</a> field is rounding mode.</p><pre class="code"><code>f[fd] = 1ext(u32_to_f32(x[rs1][31:0]))</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>1101000</td><td>00001</td><td>rs1</td><td>rm</td><td>fd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fcvt.w.d">
+<p class="right">RV32D, RV64D</p>
+<p><big><strong>fcvt.w.d</strong> rd, fs1</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+rm[2:0] const<br>
+</p>
+<p>Convert double-precision floating-point to 32-bit integer.</p> <p>Out of bounds results are clamped between minimum and maximum 32-bit signed integer values and the invalid flag is set.  NaN counts as positive infinity.</p> <p>The <a href="https://www.robalni.org/riscv/instructions.html#field_rm">rm</a> field is rounding mode.</p><pre class="code"><code>x[rd] = sext(f64_to_i32(f[fs1]))</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>1100001</td><td>00000</td><td>fs1</td><td>rm</td><td>rd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fcvt.w.s">
+<p class="right">RV32F, RV64F</p>
+<p><big><strong>fcvt.w.s</strong> rd, fs1</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+rm[2:0] const<br>
+</p>
+<p>Convert single-precision floating-point to 32-bit integer.</p> <p>Out of bounds results are clamped between minimum and maximum 32-bit signed integer values and the invalid flag is set.  NaN counts as positive infinity.</p> <p>The <a href="https://www.robalni.org/riscv/instructions.html#field_rm">rm</a> field is rounding mode.</p><pre class="code"><code>x[rd] = sext(f32_to_i32(f[fs1]))</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>1100000</td><td>00000</td><td>fs1</td><td>rm</td><td>rd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fcvt.wu.d">
+<p class="right">RV32D, RV64D</p>
+<p><big><strong>fcvt.wu.d</strong> rd, fs1</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+rm[2:0] const<br>
+</p>
+<p>Convert double-precision floating-point to unsigned 32-bit integer.</p> <p>Out of bounds results are clamped between minimum and maximum 32-bit unsigned integer values and the invalid flag is set.  NaN counts as positive infinity.</p> <p>The <a href="https://www.robalni.org/riscv/instructions.html#field_rm">rm</a> field is rounding mode.</p><pre class="code"><code>x[rd] = sext(f32_to_u32(f[fs1]))</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>1100001</td><td>00001</td><td>fs1</td><td>rm</td><td>rd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fcvt.wu.s">
+<p class="right">RV32F, RV64F</p>
+<p><big><strong>fcvt.wu.s</strong> rd, fs1</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+rm[2:0] const<br>
+</p>
+<p>Convert single-precision floating-point to unsigned 32-bit integer.</p> <p>Out of bounds results are clamped between minimum and maximum 32-bit unsigned integer values and the invalid flag is set.  NaN counts as positive infinity.</p> <p>The <a href="https://www.robalni.org/riscv/instructions.html#field_rm">rm</a> field is rounding mode.</p><pre class="code"><code>x[rd] = sext(f32_to_u32(f[fs1]))</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>1100000</td><td>00001</td><td>fs1</td><td>rm</td><td>rd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fdiv.d">
+<p class="right">RV32D, RV64D</p>
+<p><big><strong>fdiv.d</strong> fd, fs1, fs2</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+fs2[4:0] reg(R)<br>
+rm[2:0] const<br>
+</p>
+<p>Divide double-precision floating-point.  Calculate fs1/fs2 and put the result in fd.  </p><p>The <a href="https://www.robalni.org/riscv/instructions.html#field_rm">rm</a> field is rounding mode.</p><pre class="code"><code>f[fd] = f[fs1] / f[fs2]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0001101</td><td>fs2</td><td>fs1</td><td>rm</td><td>fd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fdiv.s">
+<p class="right">RV32F, RV64F</p>
+<p><big><strong>fdiv.s</strong> fd, fs1, fs2</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+fs2[4:0] reg(R)<br>
+rm[2:0] const<br>
+</p>
+<p>Divide single-precision floating-point.  Calculate fs1/fs2 and put the result in fd.  </p><p>The <a href="https://www.robalni.org/riscv/instructions.html#field_rm">rm</a> field is rounding mode.</p><pre class="code"><code>f[fd] = f[fs1] / f[fs2]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0001100</td><td>fs2</td><td>fs1</td><td>rm</td><td>fd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fence">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>fence</strong> pred, succ</big></p>
+<p class="params">
+pred[3:0] const<br>
+succ[3:0] const<br>
+fm[3:0] const<br>
+</p>
+<p>Fence memory and I/O. Ensure that no operation following the fence (that is specified in <code>succ</code>) can be observed before any operation preceding the fence (that is specified in <code>pred</code>), by any other RISC-V hart or external device.</p><p>Example: "fence r, w" means that all reads before the fence must be observed before all writes after the fence by all harts and devices.</p><p>Address space is divided into two types: main memory and input/output. Load and store operations to main memory are ordered by the R and W bits. Load and store operations to I/O addresses are ordered by the I and O bits.</p><p><code>pred</code> and <code>succ</code> are 4 bit values specifying the types of operations where bit3=input, bit2=output, bit1=read, bit0=write.  Any combination may be specified.</p><p><code>fm</code> (fence mode): 0000 = normal fence, as described above; 1000 "TSO" (with pred=RW and succ=RW) = like normal fence but allow pred writes to be ordered after succ reads.</p><pre class="code"><code>Fence(pred, succ)</code></pre>
+<table class="enctable I">
+<tbody><tr><td>31 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>fm,pred,succ</td><td>00000</td><td>000</td><td>00000</td><td>0001111</td></tr>
+<tr><td>12</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fence.i">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>fence.i</strong> </big></p>
+<p class="params">
+</p>
+<p>Fence instruction stream. Ensure that a subsequent instruction fetch on a RISC-V hart will see any previous data stores already visible to the same RISC-V hart. It does not ensure that other RISC-V harts will see the stores.</p><pre class="code"><code>Fence(Store, Fetch)</code></pre>
+<table class="enctable I">
+<tbody><tr><td>31 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>000000000000</td><td>00000</td><td>001</td><td>00000</td><td>0001111</td></tr>
+<tr><td>12</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="feq.d">
+<p class="right">RV32D, RV64D</p>
+<p><big><strong>feq.d</strong> rd, fs1, fs2</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+fs2[4:0] reg(R)<br>
+</p>
+<p>Set if equal double-precision floating-point.  Calculate fs1==fs2 and write 1 to rd if true, else 0.  </p><p>If either input is NaN, the result is 0 and the invalid operation flag is only set if either result is a signaling NaN.</p> <pre class="code"><code>r[rd] = f[fs1] == f[fs2]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>1010001</td><td>fs2</td><td>fs1</td><td>010</td><td>rd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="feq.s">
+<p class="right">RV32F, RV64F</p>
+<p><big><strong>feq.s</strong> rd, fs1, fs2</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+fs2[4:0] reg(R)<br>
+</p>
+<p>Set if equal single-precision floating-point.  Calculate fs1==fs2 and write 1 to rd if true, else 0.  </p><p>If either input is NaN, the result is 0 and the invalid operation flag is only set if either result is a signaling NaN.</p> <pre class="code"><code>r[rd] = f[fs1] == f[fs2]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>1010000</td><td>fs2</td><td>fs1</td><td>010</td><td>rd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fld">
+<p class="right">RV32D, RV64D</p>
+<p><big><strong>fld</strong> fd, imm(rs1)</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+rs1[4:0] reg(R)+mem(R)<br>
+imm[11:0] mem(R)<br>
+</p>
+<p>Load double-precision floating-point. Copy doubleword from memory at address <code>imm</code>+<code>rs1</code> into register <code>fd</code>.</p> <pre class="code"><code>f[fd] = M[x[rs1] + sext(imm)]</code></pre>
+<table class="enctable I">
+<tbody><tr><td>31 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>imm[11:0]</td><td>rs1</td><td>011</td><td>fd</td><td>0000111</td></tr>
+<tr><td>12</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#fsd">fsd</a></p></div>
+
+<hr>
+<div class="instruction" id="fle.d">
+<p class="right">RV32D, RV64D</p>
+<p><big><strong>fle.d</strong> rd, fs1, fs2</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+fs2[4:0] reg(R)<br>
+</p>
+<p>Set if &lt;= double-precision floating-point.  Calculate fs1&lt;=fs2 and write 1 to rd if true, else 0.</p> <p>If either input is NaN, the result is 0 and the invalid operation flag is set.</p> <pre class="code"><code>r[rd] = f[fs1] &lt;= f[fs2]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>1010001</td><td>fs2</td><td>fs1</td><td>000</td><td>rd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fle.s">
+<p class="right">RV32F, RV64F</p>
+<p><big><strong>fle.s</strong> rd, fs1, fs2</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+fs2[4:0] reg(R)<br>
+</p>
+<p>Set if &lt;= single-precision floating-point.  Calculate fs1&lt;=fs2 and write 1 to rd if true, else 0.</p> <p>If either input is NaN, the result is 0 and the invalid operation flag is set.</p> <pre class="code"><code>r[rd] = f[fs1] &lt;= f[fs2]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>1010000</td><td>fs2</td><td>fs1</td><td>000</td><td>rd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="flt.d">
+<p class="right">RV32D, RV64D</p>
+<p><big><strong>flt.d</strong> rd, fs1, fs2</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+fs2[4:0] reg(R)<br>
+</p>
+<p>Set if &lt; double-precision floating-point.  Calculate fs1&lt;fs2 and write 1 to rd if true, else 0.</p> <p>If either input is NaN, the result is 0 and the invalid operation flag is set.</p> <pre class="code"><code>r[rd] = f[fs1] &lt; f[fs2]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>1010001</td><td>fs2</td><td>fs1</td><td>001</td><td>rd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="flt.s">
+<p class="right">RV32F, RV64F</p>
+<p><big><strong>flt.s</strong> rd, fs1, fs2</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+fs2[4:0] reg(R)<br>
+</p>
+<p>Set if &lt; single-precision floating-point.  Calculate fs1&lt;fs2 and write 1 to rd if true, else 0.</p> <p>If either input is NaN, the result is 0 and the invalid operation flag is set.</p> <pre class="code"><code>r[rd] = f[fs1] &lt; f[fs2]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>1010000</td><td>fs2</td><td>fs1</td><td>001</td><td>rd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="flw">
+<p class="right">RV32F, RV64F</p>
+<p><big><strong>flw</strong> fd, imm(rs1)</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+rs1[4:0] reg(R)+mem(R)<br>
+imm[11:0] mem(R)<br>
+</p>
+<p>Load single-precision floating-point. Copy word from memory at address <code>imm</code>+<code>rs1</code> into register <code>fd</code>.</p> <pre class="code"><code>f[fd] = 1ext(M[x[rs1] + sext(imm)][31:0])</code></pre>
+<table class="enctable I">
+<tbody><tr><td>31 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>imm[11:0]</td><td>rs1</td><td>010</td><td>fd</td><td>0000111</td></tr>
+<tr><td>12</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#fsw">fsw</a></p></div>
+
+<hr>
+<div class="instruction" id="fmadd.d">
+<p class="right">RV32D, RV64D</p>
+<p><big><strong>fmadd.d</strong> fd, fs1, fs2, fs3</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+fs2[4:0] reg(R)<br>
+fs3[4:0] reg(R)<br>
+</p>
+<p>Multiply and add double-precision floating-point.  Calculate fs1*fs2+fs3 and put the result in fd.  </p><pre class="code"><code>f[fd] = (f[fs1] * f[fs2]) + f[fs3]</code></pre>
+<table class="enctable R4">
+<tbody><tr><td>31 27</td><td>26 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>fs3</td><td>01</td><td>fs2</td><td>fs1</td><td>000</td><td>fd</td><td>1000011</td></tr>
+<tr><td>5</td><td>2</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fmadd.s">
+<p class="right">RV32F, RV64F</p>
+<p><big><strong>fmadd.s</strong> fd, fs1, fs2, fs3</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+fs2[4:0] reg(R)<br>
+fs3[4:0] reg(R)<br>
+</p>
+<p>Multiply and add single-precision floating-point.  Calculate fs1*fs2+fs3 and put the result in fd.  </p><pre class="code"><code>f[fd] = (f[fs1] * f[fs2]) + f[fs3]</code></pre>
+<table class="enctable R4">
+<tbody><tr><td>31 27</td><td>26 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>fs3</td><td>00</td><td>fs2</td><td>fs1</td><td>000</td><td>fd</td><td>1000011</td></tr>
+<tr><td>5</td><td>2</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fmax.d">
+<p class="right">RV32D, RV64D</p>
+<p><big><strong>fmax.d</strong> fd, fs1, fs2</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+fs2[4:0] reg(R)<br>
+</p>
+<p>Maximum double-precision floating-point.  Calculate the maximum value of fs1 and fs2 and put the result in fd.  </p><pre class="code"><code>f[fd] = max(f[fs1], f[fs2])</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0010101</td><td>fs2</td><td>fs1</td><td>001</td><td>fd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fmax.s">
+<p class="right">RV32F, RV64F</p>
+<p><big><strong>fmax.s</strong> fd, fs1, fs2</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+fs2[4:0] reg(R)<br>
+</p>
+<p>Maximum single-precision floating-point.  Calculate the maximum value of fs1 and fs2 and put the result in fd.  </p><pre class="code"><code>f[fd] = max(f[fs1], f[fs2])</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0010100</td><td>fs2</td><td>fs1</td><td>001</td><td>fd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fmin.d">
+<p class="right">RV32D, RV64D</p>
+<p><big><strong>fmin.d</strong> fd, fs1, fs2</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+fs2[4:0] reg(R)<br>
+</p>
+<p>Minimum double-precision floating-point.  Calculate the minimum value of fs1 and fs2 and put the result in fd.  </p><pre class="code"><code>f[fd] = min(f[fs1], f[fs2])</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0010101</td><td>fs2</td><td>fs1</td><td>000</td><td>fd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fmin.s">
+<p class="right">RV32F, RV64F</p>
+<p><big><strong>fmin.s</strong> fd, fs1, fs2</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+fs2[4:0] reg(R)<br>
+</p>
+<p>Minimum single-precision floating-point.  Calculate the minimum value of fs1 and fs2 and put the result in fd.  </p><pre class="code"><code>f[fd] = min(f[fs1], f[fs2])</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0010100</td><td>fs2</td><td>fs1</td><td>000</td><td>fd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fmsub.d">
+<p class="right">RV32D, RV64D</p>
+<p><big><strong>fmsub.d</strong> fd, fs1, fs2, fs3</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+fs2[4:0] reg(R)<br>
+fs3[4:0] reg(R)<br>
+</p>
+<p>Multiply and subtract double-precision floating-point.  Calculate fs1*fs2-fs3 and put the result in fd.  </p><pre class="code"><code>f[fd] = (f[fs1] * f[fs2]) - f[fs3]</code></pre>
+<table class="enctable R4">
+<tbody><tr><td>31 27</td><td>26 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>fs3</td><td>01</td><td>fs2</td><td>fs1</td><td>000</td><td>fd</td><td>1000111</td></tr>
+<tr><td>5</td><td>2</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fmsub.s">
+<p class="right">RV32F, RV64F</p>
+<p><big><strong>fmsub.s</strong> fd, fs1, fs2, fs3</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+fs2[4:0] reg(R)<br>
+fs3[4:0] reg(R)<br>
+</p>
+<p>Multiply and subtract single-precision floating-point.  Calculate fs1*fs2-fs3 and put the result in fd.  </p><pre class="code"><code>f[fd] = (f[fs1] * f[fs2]) - f[fs3]</code></pre>
+<table class="enctable R4">
+<tbody><tr><td>31 27</td><td>26 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>fs3</td><td>00</td><td>fs2</td><td>fs1</td><td>000</td><td>fd</td><td>1000111</td></tr>
+<tr><td>5</td><td>2</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fmul.d">
+<p class="right">RV32D, RV64D</p>
+<p><big><strong>fmul.d</strong> fd, fs1, fs2</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+fs2[4:0] reg(R)<br>
+rm[2:0] const<br>
+</p>
+<p>Multiply double-precision floating-point.  Calculate fs1*fs2 and put the result in fd.  </p><p>The <a href="https://www.robalni.org/riscv/instructions.html#field_rm">rm</a> field is rounding mode.</p><pre class="code"><code>f[fd] = f[fs1] * f[fs2]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0001001</td><td>fs2</td><td>fs1</td><td>rm</td><td>fd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fmul.s">
+<p class="right">RV32F, RV64F</p>
+<p><big><strong>fmul.s</strong> fd, fs1, fs2</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+fs2[4:0] reg(R)<br>
+rm[2:0] const<br>
+</p>
+<p>Multiply single-precision floating-point.  Calculate fs1*fs2 and put the result in fd.  </p><p>The <a href="https://www.robalni.org/riscv/instructions.html#field_rm">rm</a> field is rounding mode.</p><pre class="code"><code>f[fd] = f[fs1] * f[fs2]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0001000</td><td>fs2</td><td>fs1</td><td>rm</td><td>fd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fmv.d.x">
+<p class="right">RV64D</p>
+<p><big><strong>fmv.d.x</strong> fd, rs</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+rs[4:0] reg(R)<br>
+</p>
+<p>Move 64-bit integer to single-precision floating-point.  The bits are not modified.</p> <pre class="code"><code>f[fd] = r[rs]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>1111001</td><td>00000</td><td>rs</td><td>000</td><td>fd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fmv.w.x">
+<p class="right">RV32F, RV64F</p>
+<p><big><strong>fmv.w.x</strong> fd, rs</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+rs[4:0] reg(R)<br>
+</p>
+<p>Move 32-bit integer to single-precision floating-point.  The bits are not modified.</p> <pre class="code"><code>f[fd] = 1ext(r[rs][31:0])</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>1111000</td><td>00000</td><td>rs</td><td>000</td><td>fd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fmv.x.d">
+<p class="right">RV64D</p>
+<p><big><strong>fmv.x.d</strong> rd, fs</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+fs[4:0] reg(R)<br>
+</p>
+<p>Move double-precision floating-point to 64-bit integer.  The bits are not modified.</p> <pre class="code"><code>x[rd] = sext(f[fs])</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>1110001</td><td>00000</td><td>fs</td><td>000</td><td>rd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fmv.x.w">
+<p class="right">RV32F, RV64F</p>
+<p><big><strong>fmv.x.w</strong> rd, fs</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+fs[4:0] reg(R)<br>
+</p>
+<p>Move single-precision floating-point to 32-bit integer.  The bits are not modified.</p> <pre class="code"><code>x[rd] = sext(f[fs][31:0])</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>1110000</td><td>00000</td><td>fs</td><td>000</td><td>rd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fnmadd.d">
+<p class="right">RV32D, RV64D</p>
+<p><big><strong>fnmadd.d</strong> fd, fs1, fs2, fs3</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+fs2[4:0] reg(R)<br>
+fs3[4:0] reg(R)<br>
+</p>
+<p>Negative multiply and add double-precision floating-point.  Calculate -(fs1*fs2)-fs3 and put the result in fd.  </p><pre class="code"><code>f[fd] = -(f[fs1] * f[fs2]) - f[fs3]</code></pre>
+<table class="enctable R4">
+<tbody><tr><td>31 27</td><td>26 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>fs3</td><td>01</td><td>fs2</td><td>fs1</td><td>000</td><td>fd</td><td>1001111</td></tr>
+<tr><td>5</td><td>2</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fnmadd.s">
+<p class="right">RV32F, RV64F</p>
+<p><big><strong>fnmadd.s</strong> fd, fs1, fs2, fs3</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+fs2[4:0] reg(R)<br>
+fs3[4:0] reg(R)<br>
+</p>
+<p>Negative multiply and add single-precision floating-point.  Calculate -(fs1*fs2)-fs3 and put the result in fd.  </p><pre class="code"><code>f[fd] = -(f[fs1] * f[fs2]) - f[fs3]</code></pre>
+<table class="enctable R4">
+<tbody><tr><td>31 27</td><td>26 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>fs3</td><td>00</td><td>fs2</td><td>fs1</td><td>000</td><td>fd</td><td>1001111</td></tr>
+<tr><td>5</td><td>2</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fnmsub.d">
+<p class="right">RV32D, RV64D</p>
+<p><big><strong>fnmsub.d</strong> fd, fs1, fs2, fs3</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+fs2[4:0] reg(R)<br>
+fs3[4:0] reg(R)<br>
+</p>
+<p>Negative multiply and subtract double-precision floating-point.  Calculate -(fs1*fs2)+fs3 and put the result in fd.  </p><pre class="code"><code>f[fd] = -(f[fs1] * f[fs2]) + f[fs3]</code></pre>
+<table class="enctable R4">
+<tbody><tr><td>31 27</td><td>26 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>fs3</td><td>01</td><td>fs2</td><td>fs1</td><td>000</td><td>fd</td><td>1001011</td></tr>
+<tr><td>5</td><td>2</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fnmsub.s">
+<p class="right">RV32F, RV64F</p>
+<p><big><strong>fnmsub.s</strong> fd, fs1, fs2, fs3</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+fs2[4:0] reg(R)<br>
+fs3[4:0] reg(R)<br>
+</p>
+<p>Negative multiply and subtract single-precision floating-point.  Calculate -(fs1*fs2)+fs3 and put the result in fd.  </p><pre class="code"><code>f[fd] = -(f[fs1] * f[fs2]) + f[fs3]</code></pre>
+<table class="enctable R4">
+<tbody><tr><td>31 27</td><td>26 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>fs3</td><td>00</td><td>fs2</td><td>fs1</td><td>000</td><td>fd</td><td>1001011</td></tr>
+<tr><td>5</td><td>2</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fsd">
+<p class="right">RV32D, RV64D</p>
+<p><big><strong>fsd</strong> fs2, imm(rs1)</big></p>
+<p class="params">
+fs2[4:0] reg(R)<br>
+rs1[4:0] reg(R)+mem(W)<br>
+imm[11:0] mem(W)<br>
+</p>
+<p>Store double-precision floating-point. Copy register <code>fs2</code> as doubleword into memory at address <code>imm</code>+<code>rs1</code>.  </p><pre class="code"><code>M[x[rs1] + sext(imm)] = f[fs2]</code></pre>
+<table class="enctable S">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>imm[11:5]</td><td>fs2</td><td>rs1</td><td>011</td><td>imm[4:0]</td><td>0100111</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#fld">fld</a></p></div>
+
+<hr>
+<div class="instruction" id="fsgnj.d">
+<p class="right">RV32D, RV64D</p>
+<p><big><strong>fsgnj.d</strong> fd, fs1, fs2</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+fs2[4:0] reg(R)<br>
+</p>
+<p>Sign inject for double-precision floating-point.</p> <p>Move fs1, with the sign bit of fs2, into fd.</p> <pre class="code"><code>f[fd] = f[fs1][62:0] | (f[fs2][63] &lt;&lt; 63)</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0010001</td><td>fs2</td><td>fs1</td><td>000</td><td>fd</td><td>1001011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fsgnjn.d">
+<p class="right">RV32D, RV64D</p>
+<p><big><strong>fsgnjn.d</strong> fd, fs1, fs2</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+fs2[4:0] reg(R)<br>
+</p>
+<p>Negative sign inject for double-precision floating-point.</p> <p>Move fs1, with the sign bit of ~fs2, into fd.</p> <pre class="code"><code>f[fd] = f[fs1][62:0] | (~(f[fs2][63]) &lt;&lt; 63)</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0010001</td><td>fs2</td><td>fs1</td><td>001</td><td>fd</td><td>1001011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fsgnjn.s">
+<p class="right">RV32F, RV64F</p>
+<p><big><strong>fsgnjn.s</strong> fd, fs1, fs2</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+fs2[4:0] reg(R)<br>
+</p>
+<p>Negative sign inject for single-precision floating-point.</p> <p>Move fs1, with the sign bit of ~fs2, into fd.</p> <pre class="code"><code>f[fd] = f[fs1][30:0] | (~(f[fs2][31]) &lt;&lt; 31)</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0010000</td><td>fs2</td><td>fs1</td><td>001</td><td>fd</td><td>1001011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fsgnj.s">
+<p class="right">RV32F, RV64F</p>
+<p><big><strong>fsgnj.s</strong> fd, fs1, fs2</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+fs2[4:0] reg(R)<br>
+</p>
+<p>Sign inject for single-precision floating-point.</p> <p>Move fs1, with the sign bit of fs2, into fd.</p> <pre class="code"><code>f[fd] = f[fs1][30:0] | (f[fs2][31] &lt;&lt; 31)</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0010000</td><td>fs2</td><td>fs1</td><td>000</td><td>fd</td><td>1001011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fsgnjx.d">
+<p class="right">RV32D, RV64D</p>
+<p><big><strong>fsgnjx.d</strong> fd, fs1, fs2</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+fs2[4:0] reg(R)<br>
+</p>
+<p>Xor sign inject for double-precision floating-point.</p> <p>Move fs1, with the sign bit of fs1^fs2, into fd.</p> <pre class="code"><code>f[fd] = f[fs1][62:0] | ((f[fs1][63] ^ f[fs2][63]) &lt;&lt; 63)</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0010001</td><td>fs2</td><td>fs1</td><td>010</td><td>fd</td><td>1001011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fsgnjx.s">
+<p class="right">RV32F, RV64F</p>
+<p><big><strong>fsgnjx.s</strong> fd, fs1, fs2</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+fs2[4:0] reg(R)<br>
+</p>
+<p>Xor sign inject for single-precision floating-point.</p> <p>Move fs1, with the sign bit of fs1^fs2, into fd.</p> <pre class="code"><code>f[fd] = f[fs1][30:0] | ((f[fs1][31] ^ f[fs2][31]) &lt;&lt; 31)</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0010000</td><td>fs2</td><td>fs1</td><td>010</td><td>fd</td><td>1001011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fsqrt.d">
+<p class="right">RV32D, RV64D</p>
+<p><big><strong>fsqrt.d</strong> fd, fs1</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+rm[2:0] const<br>
+</p>
+<p>Square root double-precision floating-point.  Calculate sqrt(fs1) and put the result in fd.  </p><p>The <a href="https://www.robalni.org/riscv/instructions.html#field_rm">rm</a> field is rounding mode.</p><pre class="code"><code>f[fd] = sqrt(f[fs1])</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0101101</td><td>00000</td><td>fs1</td><td>rm</td><td>fd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fsqrt.s">
+<p class="right">RV32F, RV64F</p>
+<p><big><strong>fsqrt.s</strong> fd, fs1</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+rm[2:0] const<br>
+</p>
+<p>Square root single-precision floating-point.  Calculate sqrt(fs1) and put the result in fd.  </p><p>The <a href="https://www.robalni.org/riscv/instructions.html#field_rm">rm</a> field is rounding mode.</p><pre class="code"><code>f[fd] = sqrt(f[fs1])</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0101100</td><td>00000</td><td>fs1</td><td>rm</td><td>fd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fsub.d">
+<p class="right">RV32D, RV64D</p>
+<p><big><strong>fsub.d</strong> fd, fs1, fs2</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+fs2[4:0] reg(R)<br>
+rm[2:0] const<br>
+</p>
+<p>Subtract double-precision floating-point.  Calculate fs1-fs2 and put the result in fd.  </p><p>The <a href="https://www.robalni.org/riscv/instructions.html#field_rm">rm</a> field is rounding mode.</p><pre class="code"><code>f[fd] = f[fs1] - f[fs2]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0000101</td><td>fs2</td><td>fs1</td><td>rm</td><td>fd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fsub.s">
+<p class="right">RV32F, RV64F</p>
+<p><big><strong>fsub.s</strong> fd, fs1, fs2</big></p>
+<p class="params">
+fd[4:0] reg(W)<br>
+fs1[4:0] reg(R)<br>
+fs2[4:0] reg(R)<br>
+rm[2:0] const<br>
+</p>
+<p>Subtract single-precision floating-point.  Calculate fs1-fs2 and put the result in fd.  </p><p>The <a href="https://www.robalni.org/riscv/instructions.html#field_rm">rm</a> field is rounding mode.</p><pre class="code"><code>f[fd] = f[fs1] - f[fs2]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0000100</td><td>fs2</td><td>fs1</td><td>rm</td><td>fd</td><td>1010011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="fsw">
+<p class="right">RV32F, RV64F</p>
+<p><big><strong>fsw</strong> fs2, imm(rs1)</big></p>
+<p class="params">
+fs2[4:0] reg(R)<br>
+rs1[4:0] reg(R)+mem(W)<br>
+imm[11:0] mem(W)<br>
+</p>
+<p>Store single-precision floating-point. Copy register <code>fs2</code> as word into memory at address <code>imm</code>+<code>rs1</code>.  </p><pre class="code"><code>M[x[rs1] + sext(imm)] = f[fs2][31:0]</code></pre>
+<table class="enctable S">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>imm[11:5]</td><td>fs2</td><td>rs1</td><td>010</td><td>imm[4:0]</td><td>0100111</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#flw">flw</a></p></div>
+
+<hr>
+<div class="instruction" id="jal">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>jal</strong> rd, imm</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+imm[20:1] const<br>
+</p>
+<p>Jump and link. Add <code>imm</code> (multiple of 2 bytes) to <code>pc</code>. Put the address of the instruction following the jump (<code>pc</code> + 4 before adding) in <code>rd</code>.</p> <pre class="code"><code>x[rd] = pc + 4
+pc += sext(imm)</code></pre>
+<table class="enctable J">
+<tbody><tr><td>31 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>imm[20,10:1,11,19:12]</td><td>rd</td><td>1101111</td></tr>
+<tr><td>20</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#jalr">jalr</a></p></div>
+
+<hr>
+<div class="instruction" id="jalr">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>jalr</strong> rd, imm(rs1)</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+imm[11:0] const<br>
+</p>
+<p>Jump and link register. Add <code>imm</code> and <code>rs1</code>, clear the least-significant bit and put the result in <code>pc</code>.  Put the address of the instruction following the jump (<code>pc</code> + 4 before changing <code>pc</code>) in <code>rd</code>.</p> <pre class="code"><code>t = pc + 4
+pc = (x[rs1] + sext(imm)) &amp; ∼1
+x[rd] = t</code></pre>
+<table class="enctable I">
+<tbody><tr><td>31 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>imm[11:0]</td><td>rs1</td><td>000</td><td>rd</td><td>1100111</td></tr>
+<tr><td>12</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#jal">jal</a>, <a href="https://www.robalni.org/riscv/instructions.html#call">call</a>, <a href="https://www.robalni.org/riscv/instructions.html#tail">tail</a></p></div>
+
+<hr>
+<div class="instruction" id="lb">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>lb</strong> rd, imm(rs1)</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)+mem(R)<br>
+imm[11:0] mem(R)<br>
+</p>
+<p>Load byte. Copy one byte from memory at address <code>imm</code>+<code>rs1</code> into register <code>rd</code>.</p> <pre class="code"><code>x[rd] = sext(M[x[rs1] + sext(imm)][7:0])</code></pre>
+<table class="enctable I">
+<tbody><tr><td>31 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>imm[11:0]</td><td>rs1</td><td>000</td><td>rd</td><td>0000011</td></tr>
+<tr><td>12</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#lbu">lbu</a>, <a href="https://www.robalni.org/riscv/instructions.html#sb">sb</a></p></div>
+
+<hr>
+<div class="instruction" id="lbu">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>lbu</strong> rd, imm(rs1)</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)+mem(R)<br>
+imm[11:0] mem(R)<br>
+</p>
+<p>Load byte, unsigned. Copy one byte from memory at address <code>imm</code>+<code>rs1</code> into register <code>rd</code>.</p> <pre class="code"><code>x[rd] = M[x[rs1] + sext(imm)][7:0]</code></pre>
+<table class="enctable I">
+<tbody><tr><td>31 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>imm[11:0]</td><td>rs1</td><td>100</td><td>rd</td><td>0000011</td></tr>
+<tr><td>12</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#lb">lb</a>, <a href="https://www.robalni.org/riscv/instructions.html#sb">sb</a></p></div>
+
+<hr>
+<div class="instruction" id="ld">
+<p class="right">RV64I</p>
+<p><big><strong>ld</strong> rd, imm(rs1)</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)+mem(R)<br>
+imm[11:0] mem(R)<br>
+</p>
+<p>Load doubleword. Copy doubleword from memory at address <code>imm</code>+<code>rs1</code> into register <code>rd</code>.</p> <pre class="code"><code>x[rd] = sext(M[x[rs1] + sext(imm)][63:0])</code></pre>
+<table class="enctable I">
+<tbody><tr><td>31 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>imm[11:0]</td><td>rs1</td><td>011</td><td>rd</td><td>0000011</td></tr>
+<tr><td>12</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#sd">sd</a>, <a href="https://www.robalni.org/riscv/instructions.html#lr.d">lr.d</a></p></div>
+
+<hr>
+<div class="instruction" id="lh">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>lh</strong> rd, imm(rs1)</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)+mem(R)<br>
+imm[11:0] mem(R)<br>
+</p>
+<p>Load halfword. Copy halfword from memory at address <code>imm</code>+<code>rs1</code> into register <code>rd</code>.</p> <pre class="code"><code>x[rd] = sext(M[x[rs1] + sext(imm)][15:0])</code></pre>
+<table class="enctable I">
+<tbody><tr><td>31 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>imm[11:0]</td><td>rs1</td><td>001</td><td>rd</td><td>0000011</td></tr>
+<tr><td>12</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#lhu">lhu</a>, <a href="https://www.robalni.org/riscv/instructions.html#sh">sh</a></p></div>
+
+<hr>
+<div class="instruction" id="lhu">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>lhu</strong> rd, imm(rs1)</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)+mem(R)<br>
+imm[11:0] mem(R)<br>
+</p>
+<p>Load halfword, unsigned. Copy halfword from memory at address <code>imm</code>+<code>rs1</code> into register <code>rd</code>.</p> <pre class="code"><code>x[rd] = M[x[rs1] + sext(imm)][15:0]</code></pre>
+<table class="enctable I">
+<tbody><tr><td>31 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>imm[11:0]</td><td>rs1</td><td>101</td><td>rd</td><td>0000011</td></tr>
+<tr><td>12</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#lh">lh</a>, <a href="https://www.robalni.org/riscv/instructions.html#sh">sh</a></p></div>
+
+<hr>
+<div class="instruction" id="lr.d">
+<p class="right">RV64IA</p>
+<p><big><strong>lr.d</strong> rd, rs1</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)+mem(R)<br>
+aq[0] const<br>
+rl[0] const<br>
+</p>
+<p>Load-reserve doubleword. Copy doubleword from memory at address <code>rs1</code> and put it in <code>rd</code>.</p><p>In addition to loading memory, remember what bytes were loaded so that this instruction can be paired with <code>sc.d</code>.</p><pre class="code"><code>x[rd] = sext(M[x[rs1]][63:0])
+Reserve(x[rs1]:x[rs1]+63)</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>00010, aq, rl</td><td>00000</td><td>rs1</td><td>011</td><td>rd</td><td>0100000</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#sc.d">sc.d</a>, <a href="https://www.robalni.org/riscv/instructions.html#ld">ld</a></p></div>
+
+<hr>
+<div class="instruction" id="lr.w">
+<p class="right">RV32IA, RV64IA</p>
+<p><big><strong>lr.w</strong> rd, rs1</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)+mem(R)<br>
+aq[0] const<br>
+rl[0] const<br>
+</p>
+<p>Load-reserve word. Copy word from memory at address <code>rs1</code> and put it in <code>rd</code>.</p><p>In addition to loading memory, remember what bytes were loaded so that this instruction can be paired with <code>sc.w</code>.</p><pre class="code"><code>x[rd] = sext(M[x[rs1]][31:0])
+Reserve(x[rs1]:x[rs1]+31)</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>00010, aq, rl</td><td>00000</td><td>rs1</td><td>010</td><td>rd</td><td>0100000</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#sc.w">sc.w</a>, <a href="https://www.robalni.org/riscv/instructions.html#lw">lw</a></p></div>
+
+<hr>
+<div class="instruction" id="lui">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>lui</strong> rd, imm[31:12]</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+imm[31:12] const<br>
+</p>
+<p>Load upper immediate. Can be used to build 32-bit constants. Put upper 20 bits of <code>imm</code> in <code>rd</code> and fill lower 12 bits with zeros.</p> <pre class="code"><code>x[rd] = sext(imm[31:12] &lt;&lt; 12)</code></pre>
+<table class="enctable U">
+<tbody><tr><td>31 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>imm[31:12]</td><td>rd</td><td>0110111</td></tr>
+<tr><td>20</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#auipc">auipc</a></p></div>
+
+<hr>
+<div class="instruction" id="lw">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>lw</strong> rd, imm(rs1)</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)+mem(R)<br>
+imm[11:0] mem(R)<br>
+</p>
+<p>Load word. Copy word from memory at address <code>imm</code>+<code>rs1</code> into register <code>rd</code>.</p> <pre class="code"><code>x[rd] = sext(M[x[rs1] + sext(imm)][31:0])</code></pre>
+<table class="enctable I">
+<tbody><tr><td>31 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>imm[11:0]</td><td>rs1</td><td>010</td><td>rd</td><td>0000011</td></tr>
+<tr><td>12</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#sw">sw</a></p></div>
+
+<hr>
+<div class="instruction" id="lwu">
+<p class="right">RV64I</p>
+<p><big><strong>lwu</strong> rd, imm(rs1)</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)+mem(R)<br>
+imm[11:0] mem(R)<br>
+</p>
+<p>Load word, unsigned. Copy word from memory at address <code>imm</code>+<code>rs1</code> into register <code>rd</code>.</p> <pre class="code"><code>x[rd] = M[x[rs1] + sext(imm)][31:0]</code></pre>
+<table class="enctable I">
+<tbody><tr><td>31 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>imm[11:0]</td><td>rs1</td><td>110</td><td>rd</td><td>0000011</td></tr>
+<tr><td>12</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#lw">lw</a></p></div>
+
+<hr>
+<div class="instruction" id="mul">
+<p class="right">RV32M, RV64M</p>
+<p><big><strong>mul</strong> rd, rs1, rs2</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+rs2[4:0] reg(R)<br>
+</p>
+<p>Multiply. Multiply <code>rs1</code> and <code>rs2</code> and put the lower bits of the result in <code>rd</code>. Arithmetic overflow is ignored.</p> <pre class="code"><code>x[rd] = (x[rs1] *<sub>s</sub> x[rs2])[XHI:0]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0000001</td><td>rs2</td><td>rs1</td><td>000</td><td>rd</td><td>0110011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="mulh">
+<p class="right">RV32M, RV64M</p>
+<p><big><strong>mulh</strong> rd, rs1, rs2</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+rs2[4:0] reg(R)<br>
+</p>
+<p>Multiply upper. Multiply <code>rs1</code> and <code>rs2</code> and put the upper bits of the result in <code>rd</code>.</p> <pre class="code"><code>x[rd] = (x[rs1] *<sub>s</sub> x[rs2])[DXHI:XLEN]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0000001</td><td>rs2</td><td>rs1</td><td>001</td><td>rd</td><td>0110011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="mulhsu">
+<p class="right">RV32M, RV64M</p>
+<p><big><strong>mulhsu</strong> rd, rs1, rs2</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+rs2[4:0] reg(R)<br>
+</p>
+<p>Multiply upper signed*unsigned. Multiply signed <code>rs1</code> and unsigned <code>rs2</code> and put the upper bits of the result in <code>rd</code>.</p> <pre class="code"><code>x[rd] = (x[rs1] *<sub>s,u</sub> x[rs2])[DXHI:XLEN]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0000001</td><td>rs2</td><td>rs1</td><td>010</td><td>rd</td><td>0110011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="mulhu">
+<p class="right">RV32M, RV64M</p>
+<p><big><strong>mulhu</strong> rd, rs1, rs2</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+rs2[4:0] reg(R)<br>
+</p>
+<p>Multiply upper unsigned. Multiply unsigned <code>rs1</code> and unsigned <code>rs2</code> and put the upper bits of the result in <code>rd</code>.</p> <pre class="code"><code>x[rd] = (x[rs1] *<sub>u</sub> x[rs2])[DXHI:XLEN]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0000001</td><td>rs2</td><td>rs1</td><td>011</td><td>rd</td><td>0110011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="mulw">
+<p class="right">RV64M</p>
+<p><big><strong>mulw</strong> rd, rs1, rs2</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+rs2[4:0] reg(R)<br>
+</p>
+<p>Multiply word. Multiply the lower 32 bits of <code>rs1</code> and <code>rs2</code> and put the lower bits of the result in <code>rd</code>. Arithmetic overflow is ignored.</p> <pre class="code"><code>x[rd] = sext((x[rs1] *<sub>s</sub> x[rs2])[31:0])</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0000001</td><td>rs2</td><td>rs1</td><td>000</td><td>rd</td><td>0111011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="or">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>or</strong> rd, rs1, rs2</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+rs2[4:0] reg(R)<br>
+</p>
+<p>OR. Calculate bitwise OR on <code>rs1</code> and <code>rs2</code> and put the result in <code>rd</code>.</p> <pre class="code"><code>x[rd] = x[rs1] | x[rs2]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0000000</td><td>rs2</td><td>rs1</td><td>110</td><td>rd</td><td>0110011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="ori">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>ori</strong> rd, rs1, imm</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+imm[11:0] const<br>
+</p>
+<p>OR immediate. Calculate bitwise OR on <code>rs1</code> and <code>imm</code> and put the result in <code>rd</code>.</p> <pre class="code"><code>x[rd] = x[rs1] | sext(imm)</code></pre>
+<table class="enctable I">
+<tbody><tr><td>31 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>imm[11:0]</td><td>rs1</td><td>110</td><td>rd</td><td>0010011</td></tr>
+<tr><td>12</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="rem">
+<p class="right">RV32M, RV64M</p>
+<p><big><strong>rem</strong> rd, rs1, rs2</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+rs2[4:0] reg(R)<br>
+</p>
+<p>Remainder. Divide <code>rs1</code> by <code>rs2</code> and put the remainder of the result (rounded towards zero) in <code>rd</code>.</p> <pre class="code"><code>x[rd] = x[rs1] %<sub>s</sub> x[rs2]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0000001</td><td>rs2</td><td>rs1</td><td>110</td><td>rd</td><td>0110011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#div">div</a></p></div>
+
+<hr>
+<div class="instruction" id="remu">
+<p class="right">RV32M, RV64M</p>
+<p><big><strong>remu</strong> rd, rs1, rs2</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+rs2[4:0] reg(R)<br>
+</p>
+<p>Remainder unsigned. Divide unsigned <code>rs1</code> by unsigned <code>rs2</code> and put the remainder of the result (rounded towards zero) in <code>rd</code>.</p> <pre class="code"><code>x[rd] = x[rs1] %<sub>u</sub> x[rs2]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0000001</td><td>rs2</td><td>rs1</td><td>111</td><td>rd</td><td>0110011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#divu">divu</a></p></div>
+
+<hr>
+<div class="instruction" id="remuw">
+<p class="right">RV64M</p>
+<p><big><strong>remuw</strong> rd, rs1, rs2</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+rs2[4:0] reg(R)<br>
+</p>
+<p>Remainder unsigned word. Divide the lower 32 bits of unsigned <code>rs1</code> by the lower 32 bits of unsigned <code>rs2</code> and put the remainder of the result (rounded towards zero) in <code>rd</code>.</p> <pre class="code"><code>x[rd] = x[rs1][31:0] %<sub>u</sub> x[rs2][31:0]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0000001</td><td>rs2</td><td>rs1</td><td>111</td><td>rd</td><td>0111011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#divuw">divuw</a></p></div>
+
+<hr>
+<div class="instruction" id="remw">
+<p class="right">RV64M</p>
+<p><big><strong>remw</strong> rd, rs1, rs2</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+rs2[4:0] reg(R)<br>
+</p>
+<p>Remainder word. Divide the lower 32 bits of <code>rs1</code> by the lower 32 bits of <code>rs2</code> and put the remainder of the result (rounded towards zero) in <code>rd</code>.</p> <pre class="code"><code>x[rd] = x[rs1][31:0] %<sub>s</sub> x[rs2][31:0]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0000001</td><td>rs2</td><td>rs1</td><td>110</td><td>rd</td><td>0111011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#divw">divw</a></p></div>
+
+<hr>
+<div class="instruction" id="sb">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>sb</strong> rs2, imm(rs1)</big></p>
+<p class="params">
+rs2[4:0] reg(R)<br>
+rs1[4:0] reg(R)+mem(W)<br>
+imm[11:0] mem(W)<br>
+</p>
+<p>Store byte. Copy register <code>rs2</code> as byte into memory at address <code>imm</code>+<code>rs1</code>.  </p><pre class="code"><code>M[x[rs1] + sext(imm)] = x[rs2][7:0]</code></pre>
+<table class="enctable S">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>imm[11:5]</td><td>rs2</td><td>rs1</td><td>000</td><td>imm[4:0]</td><td>0100011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#lb">lb</a></p></div>
+
+<hr>
+<div class="instruction" id="sc.d">
+<p class="right">RV64IA</p>
+<p><big><strong>sc.d</strong> rd, rs1, rs2</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)+mem(W)<br>
+rs2[4:0] reg(R)<br>
+aq[0] const<br>
+rl[0] const<br>
+</p>
+<p>Store-conditional doubleword. Conditionally copy register <code>rs2</code> as doubleword into memory at address <code>rs1</code> and return error code in <code>rd</code>.</p><p>Result in <code>rd</code>: 0=success, non-0=failure. Success means that the value at the target address has not changed since the last load-reserve by the same hart and that the target range of memory is included in the reserved range by the last load-reserve.</p><pre class="code"><code>if (ReservationIsValid(x[rs1]:x[rs1]+63)) {
+  M[x[rs1]] = x[rs2][63:0]
+  x[rd] = 0
+} else {
+  x[rd] = 1 // or other non-0
+}</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>00011, aq, rl</td><td>rs2</td><td>rs1</td><td>011</td><td>rd</td><td>0101111</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#lr.d">lr.d</a>, <a href="https://www.robalni.org/riscv/instructions.html#sd">sd</a></p></div>
+
+<hr>
+<div class="instruction" id="sc.w">
+<p class="right">RV32IA, RV64IA</p>
+<p><big><strong>sc.w</strong> rd, rs1, rs2</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)+mem(W)<br>
+rs2[4:0] reg(R)<br>
+aq[0] const<br>
+rl[0] const<br>
+</p>
+<p>Store-conditional word. Conditionally copy register <code>rs2</code> as word into memory at address <code>rs1</code> and return error code in <code>rd</code>.</p><p>Result in <code>rd</code>: 0=success, non-0=failure. Success means that the value at the target address has not changed since the last load-reserve by the same hart and that the target range of memory is included in the reserved range by the last load-reserve.</p><pre class="code"><code>if (ReservationIsValid(x[rs1]:x[rs1]+31)) {
+  M[x[rs1]] = x[rs2][31:0]
+  x[rd] = 0
+} else {
+  x[rd] = 1 // or other non-0
+}</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>00011, aq, rl</td><td>rs2</td><td>rs1</td><td>010</td><td>rd</td><td>0101111</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#lr.w">lr.w</a>, <a href="https://www.robalni.org/riscv/instructions.html#sw">sw</a></p></div>
+
+<hr>
+<div class="instruction" id="sd">
+<p class="right">RV64I</p>
+<p><big><strong>sd</strong> rs2, imm(rs1)</big></p>
+<p class="params">
+rs2[4:0] reg(R)<br>
+rs1[4:0] reg(R)+mem(W)<br>
+imm[11:0] mem(W)<br>
+</p>
+<p>Store doubleword. Copy register <code>rs2</code> as doubleword into memory at address <code>imm</code>+<code>rs1</code>.  </p><pre class="code"><code>M[x[rs1] + sext(imm)] = x[rs2][63:0]</code></pre>
+<table class="enctable S">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>imm[11:5]</td><td>rs2</td><td>rs1</td><td>011</td><td>imm[4:0]</td><td>0100011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#ld">ld</a>, <a href="https://www.robalni.org/riscv/instructions.html#sc.d">sc.d</a></p></div>
+
+<hr>
+<div class="instruction" id="sh">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>sh</strong> rs2, imm(rs1)</big></p>
+<p class="params">
+rs2[4:0] reg(R)<br>
+rs1[4:0] reg(R)+mem(W)<br>
+imm[11:0] mem(W)<br>
+</p>
+<p>Store halfword. Copy register <code>rs2</code> as halfword into memory at address <code>imm</code>+<code>rs1</code>.  </p><pre class="code"><code>M[x[rs1] + sext(imm)] = x[rs2][15:0]</code></pre>
+<table class="enctable S">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>imm[11:5]</td><td>rs2</td><td>rs1</td><td>001</td><td>imm[4:0]</td><td>0100011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#lh">lh</a></p></div>
+
+<hr>
+<div class="instruction" id="sll">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>sll</strong> rd, rs1, rs2</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+rs2[4:0] reg(R)<br>
+</p>
+<p>Shift left logical. Shift <code>rs1</code> left <code>rs2</code> bits and put the result in <code>rd</code>. The lower bits are filled with zeros. Only the lower 5 bits (RV32I) or 6 bits (RV64I) in <code>rs2</code> are used.</p> <pre class="code"><code>x[rd] = x[rs1] &lt;&lt; x[rs2]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0000000</td><td>rs2</td><td>rs1</td><td>001</td><td>rd</td><td>0110011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#srl">srl</a></p></div>
+
+<hr>
+<div class="instruction" id="slli">
+<p class="right">RV32I</p>
+<p><big><strong>slli</strong> rd, rs1, imm</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+imm[4:0] const<br>
+</p>
+<p>Shift left logical immediate. Shift <code>rs1</code> left <code>imm</code> bits. The lower bits are filled with zeros.</p> <pre class="code"><code>x[rd] = x[rs1] &lt;&lt; imm</code></pre>
+<table class="enctable I">
+<tbody><tr><td>31 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0000000, imm[4:0]</td><td>rs1</td><td>001</td><td>rd</td><td>0010011</td></tr>
+<tr><td>12</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#srli">srli</a></p></div>
+
+<hr>
+<div class="instruction" id="slli">
+<p class="right">RV64I</p>
+<p><big><strong>slli</strong> rd, rs1, imm</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+imm[5:0] const<br>
+</p>
+<p>Shift left logical immediate. Shift <code>rs1</code> left <code>imm</code> bits. The lower bits are filled with zeros.</p> <pre class="code"><code>x[rd] = x[rs1] &lt;&lt; imm</code></pre>
+<table class="enctable I">
+<tbody><tr><td>31 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>000000, imm[5:0]</td><td>rs1</td><td>001</td><td>rd</td><td>0010011</td></tr>
+<tr><td>12</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#srli">srli</a></p></div>
+
+<hr>
+<div class="instruction" id="slliw">
+<p class="right">RV64I</p>
+<p><big><strong>slliw</strong> rd, rs1, imm</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+imm[5:0] const<br>
+</p>
+<p>Shift left logical word immediate. Shift <code>rs1</code> left <code>imm</code> bits. The lower bits are filled with zeros.  <code>imm[5]</code> must be 0.</p> <pre class="code"><code>x[rd] = sext((x[rs1] &lt;&lt; imm)[31:0])</code></pre>
+<table class="enctable I">
+<tbody><tr><td>31 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>000000, imm[5:0]</td><td>rs1</td><td>001</td><td>rd</td><td>0011011</td></tr>
+<tr><td>12</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#srliw">srliw</a></p></div>
+
+<hr>
+<div class="instruction" id="sllw">
+<p class="right">RV64I</p>
+<p><big><strong>sllw</strong> rd, rs1, rs2</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+rs2[4:0] reg(R)<br>
+</p>
+<p>Shift left logical word. Shift <code>rs1</code> left <code>rs2</code> bits and put the result in <code>rd</code>. The lower bits are filled with zeros. Only the lower 5 bits of <code>rs2</code> are used.</p> <pre class="code"><code>x[rd] = sext((x[rs1] &lt;&lt; x[rs2][4:0])[31:0])</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0000000</td><td>rs2</td><td>rs1</td><td>001</td><td>rd</td><td>0111011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#srlw">srlw</a></p></div>
+
+<hr>
+<div class="instruction" id="slt">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>slt</strong> rd, rs1, rs2</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+rs2[4:0] reg(R)<br>
+</p>
+<p>Set if &lt;. Put 1 in <code>rd</code> if <code>rs1</code> is less than (signed) <code>rs2</code>, else 0 is written to <code>rd</code>.</p> <pre class="code"><code>x[rd] = x[rs1] &lt;<sub>s</sub> x[rs2]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0000000</td><td>rs2</td><td>rs1</td><td>010</td><td>rd</td><td>0110011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="slti">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>slti</strong> rd, rs1, imm</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+imm[11:0] const<br>
+</p>
+<p>Set if &lt; immediate. Put 1 in <code>rd</code> if <code>rs1</code> is less than (signed) <code>imm</code>, else 0 is written to <code>rd</code>.</p> <pre class="code"><code>x[rd] = x[rs1] &lt;<sub>s</sub> sext(imm)</code></pre>
+<table class="enctable I">
+<tbody><tr><td>31 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>imm[11:0]</td><td>rs1</td><td>010</td><td>rd</td><td>0010011</td></tr>
+<tr><td>12</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="sltiu">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>sltiu</strong> rd, rs1, imm</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+imm[11:0] const<br>
+</p>
+<p>Set if &lt; immediate, unsigned. Put 1 in <code>rd</code> if <code>rs1</code> is less than (unsigned) <code>imm</code>, else 0 is written to <code>rd</code>.</p> <pre class="code"><code>x[rd] = x[rs1] &lt;<sub>u</sub> sext(imm)</code></pre>
+<table class="enctable I">
+<tbody><tr><td>31 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>imm[11:0]</td><td>rs1</td><td>011</td><td>rd</td><td>0010011</td></tr>
+<tr><td>12</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="sltu">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>sltu</strong> rd, rs1, rs2</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+rs2[4:0] reg(R)<br>
+</p>
+<p>Set if &lt;, unsigned. Put 1 in <code>rd</code> if <code>rs1</code> is less than (unsigned) <code>rs2</code>, else 0 is written to <code>rd</code>.</p> <pre class="code"><code>x[rd] = x[rs1] &lt;<sub>u</sub> x[rs2]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0000000</td><td>rs2</td><td>rs1</td><td>011</td><td>rd</td><td>0110011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="sra">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>sra</strong> rd, rs1, rs2</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+rs2[4:0] reg(R)<br>
+</p>
+<p>Shift right arithmetic. Shift <code>rs1</code> right <code>rs2</code> bits and put the result in <code>rd</code>. The upper bits are filled with the original sign bit. Only the lower 5 bits (RV32I) or 6 bits (RV64I) in <code>rs2</code> are used.</p> <pre class="code"><code>x[rd] = x[rs1] &gt;&gt;<sub>s</sub> x[rs2]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0100000</td><td>rs2</td><td>rs1</td><td>101</td><td>rd</td><td>0110011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#srl">srl</a></p></div>
+
+<hr>
+<div class="instruction" id="srai">
+<p class="right">RV32I</p>
+<p><big><strong>srai</strong> rd, rs1, imm</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+imm[4:0] const<br>
+</p>
+<p>Shift right arithmetic immediate. Shift <code>rs1</code> right <code>imm</code> bits. The upper bits are filled with the original sign bit.</p> <pre class="code"><code>x[rd] = x[rs1] &gt;&gt;<sub>s</sub> imm</code></pre>
+<table class="enctable I">
+<tbody><tr><td>31 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0100000, imm[4:0]</td><td>rs1</td><td>101</td><td>rd</td><td>0010011</td></tr>
+<tr><td>12</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#srli">srli</a></p></div>
+
+<hr>
+<div class="instruction" id="srai">
+<p class="right">RV64I</p>
+<p><big><strong>srai</strong> rd, rs1, imm</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+imm[5:0] const<br>
+</p>
+<p>Shift right arithmetic immediate. Shift <code>rs1</code> right <code>imm</code> bits. The upper bits are filled with the original sign bit.</p> <pre class="code"><code>x[rd] = x[rs1] &gt;&gt;<sub>s</sub> imm</code></pre>
+<table class="enctable I">
+<tbody><tr><td>31 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>010000, imm[5:0]</td><td>rs1</td><td>101</td><td>rd</td><td>0010011</td></tr>
+<tr><td>12</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#srli">srli</a></p></div>
+
+<hr>
+<div class="instruction" id="sraiw">
+<p class="right">RV64I</p>
+<p><big><strong>sraiw</strong> rd, rs1, imm</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+imm[5:0] const<br>
+</p>
+<p>Shift right arithmetic word immediate. Shift <code>rs1</code> right <code>imm</code> bits. The upper bits are filled with the original sign bit.</p> <pre class="code"><code>x[rd] = sext(x[rs1][31:0] &gt;&gt;<sub>s</sub> imm)</code></pre>
+<table class="enctable I">
+<tbody><tr><td>31 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>010000, imm[5:0]</td><td>rs1</td><td>101</td><td>rd</td><td>0011011</td></tr>
+<tr><td>12</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#srliw">srliw</a></p></div>
+
+<hr>
+<div class="instruction" id="sraw">
+<p class="right">RV64I</p>
+<p><big><strong>sraw</strong> rd, rs1, rs2</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+rs2[4:0] reg(R)<br>
+</p>
+<p>Shift right arithmetic word. Shift <code>rs1</code> right <code>rs2</code> bits and put the result in <code>rd</code>. The upper bits are filled with the original sign bit. Only the lower 5 bits in <code>rs2</code> are used.</p> <pre class="code"><code>x[rd] = sext(x[rs1][31:0] &gt;&gt;<sub>s</sub> x[rs2][4:0])</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0100000</td><td>rs2</td><td>rs1</td><td>101</td><td>rd</td><td>0111011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#srlw">srlw</a></p></div>
+
+<hr>
+<div class="instruction" id="srl">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>srl</strong> rd, rs1, rs2</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+rs2[4:0] reg(R)<br>
+</p>
+<p>Shift right logical. Shift <code>rs1</code> right <code>rs2</code> bits and put the result in <code>rd</code>. The upper bits are filled with zeros. Only the lower 5 bits (RV32I) or 6 bits (RV64I) in <code>rs2</code> are used.</p> <pre class="code"><code>x[rd] = x[rs1] &gt;&gt;<sub>u</sub> x[rs2]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0000000</td><td>rs2</td><td>rs1</td><td>101</td><td>rd</td><td>0110011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#sll">sll</a>, <a href="https://www.robalni.org/riscv/instructions.html#sra">sra</a></p></div>
+
+<hr>
+<div class="instruction" id="srli">
+<p class="right">RV32I</p>
+<p><big><strong>srli</strong> rd, rs1, imm</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+imm[4:0] const<br>
+</p>
+<p>Shift right logical immediate. Shift <code>rs1</code> right <code>imm</code> bits. The upper bits are filled with zeros.</p> <pre class="code"><code>x[rd] = x[rs1] &gt;&gt;<sub>u</sub> imm</code></pre>
+<table class="enctable I">
+<tbody><tr><td>31 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0000000, imm[4:0]</td><td>rs1</td><td>101</td><td>rd</td><td>0010011</td></tr>
+<tr><td>12</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#slli">slli</a>, <a href="https://www.robalni.org/riscv/instructions.html#srai">srai</a></p></div>
+
+<hr>
+<div class="instruction" id="srli">
+<p class="right">RV64I</p>
+<p><big><strong>srli</strong> rd, rs1, imm</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+imm[5:0] const<br>
+</p>
+<p>Shift right logical immediate. Shift <code>rs1</code> right <code>imm</code> bits. The upper bits are filled with zeros.</p> <pre class="code"><code>x[rd] = x[rs1] &gt;&gt;<sub>u</sub> imm</code></pre>
+<table class="enctable I">
+<tbody><tr><td>31 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>000000, imm[5:0]</td><td>rs1</td><td>101</td><td>rd</td><td>0010011</td></tr>
+<tr><td>12</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#slli">slli</a>, <a href="https://www.robalni.org/riscv/instructions.html#srai">srai</a></p></div>
+
+<hr>
+<div class="instruction" id="srliw">
+<p class="right">RV64I</p>
+<p><big><strong>srliw</strong> rd, rs1, imm</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+imm[5:0] const<br>
+</p>
+<p>Shift right logical word immediate. Shift <code>rs1</code> right <code>imm</code> bits. The upper bits are filled with zeros.  <code>imm[5]</code> must be 0.</p> <pre class="code"><code>x[rd] = sext(x[rs1][31:0] &gt;&gt;<sub>u</sub> imm)</code></pre>
+<table class="enctable I">
+<tbody><tr><td>31 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>000000, imm[5:0]</td><td>rs1</td><td>101</td><td>rd</td><td>0011011</td></tr>
+<tr><td>12</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#slliw">slliw</a>, <a href="https://www.robalni.org/riscv/instructions.html#sraiw">sraiw</a></p></div>
+
+<hr>
+<div class="instruction" id="srlw">
+<p class="right">RV64I</p>
+<p><big><strong>srlw</strong> rd, rs1, rs2</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+rs2[4:0] reg(R)<br>
+</p>
+<p>Shift right logical word. Shift <code>rs1</code> right <code>rs2</code> bits and put the result in <code>rd</code>. The upper bits are filled with zeros. Only the lower 5 bits in <code>rs2</code> are used.</p> <pre class="code"><code>x[rd] = sext(x[rs1][31:0] &gt;&gt;<sub>u</sub> x[rs2][4:0])</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0000000</td><td>rs2</td><td>rs1</td><td>101</td><td>rd</td><td>0111011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#sllw">sllw</a>, <a href="https://www.robalni.org/riscv/instructions.html#sraw">sraw</a></p></div>
+
+<hr>
+<div class="instruction" id="sub">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>sub</strong> rd, rs1, rs2</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+rs2[4:0] reg(R)<br>
+</p>
+<p>Subtract. Subtract <code>rs2</code> from <code>rs1</code> and put the result in <code>rd</code>. Arithmetic overflow is ignored.</p> <pre class="code"><code>x[rd] = x[rs1] - x[rs2]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0100000</td><td>rs2</td><td>rs1</td><td>000</td><td>rd</td><td>0110011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="subw">
+<p class="right">RV64I</p>
+<p><big><strong>subw</strong> rd, rs1, rs2</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+rs2[4:0] reg(R)<br>
+</p>
+<p>Subtract word. Subtract <code>rs2</code> from <code>rs1</code> and put the result in <code>rd</code>. Arithmetic overflow is ignored.</p> <pre class="code"><code>x[rd] = sext((x[rs1] - x[rs2])[31:0])</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0100000</td><td>rs2</td><td>rs1</td><td>000</td><td>rd</td><td>0111011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="sw">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>sw</strong> rs2, imm(rs1)</big></p>
+<p class="params">
+rs2[4:0] reg(R)<br>
+rs1[4:0] reg(R)+mem(W)<br>
+imm[11:0] mem(W)<br>
+</p>
+<p>Store word. Copy register <code>rs2</code> as word into memory at address <code>imm</code>+<code>rs1</code>.  </p><pre class="code"><code>M[x[rs1] + sext(imm)] = x[rs2][31:0]</code></pre>
+<table class="enctable S">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>imm[11:5]</td><td>rs2</td><td>rs1</td><td>010</td><td>imm[4:0]</td><td>0100011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+<p>Related: <a href="https://www.robalni.org/riscv/instructions.html#lw">lw</a></p></div>
+
+<hr>
+<div class="instruction" id="xor">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>xor</strong> rd, rs1, rs2</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+rs2[4:0] reg(R)<br>
+</p>
+<p>Exclusive OR. Calculate bitwise XOR on <code>rs1</code> and <code>rs2</code> and put the result in <code>rd</code>.</p> <pre class="code"><code>x[rd] = x[rs1] ^ x[rs2]</code></pre>
+<table class="enctable R">
+<tbody><tr><td>31 25</td><td>24 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>0000000</td><td>rs2</td><td>rs1</td><td>100</td><td>rd</td><td>0110011</td></tr>
+<tr><td>7</td><td>5</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+<div class="instruction" id="xori">
+<p class="right">RV32I, RV64I</p>
+<p><big><strong>xori</strong> rd, rs1, imm</big></p>
+<p class="params">
+rd[4:0] reg(W)<br>
+rs1[4:0] reg(R)<br>
+imm[11:0] const<br>
+</p>
+<p>Exclusive OR immediate. Calculate bitwise XOR on <code>rs1</code> and <code>imm</code> and put the result in <code>rd</code>.</p> <pre class="code"><code>x[rd] = x[rs1] ^ sext(imm)</code></pre>
+<table class="enctable I">
+<tbody><tr><td>31 20</td><td>19 15</td><td>14 12</td><td>11 7</td><td>6 0</td></tr>
+<tr><td>imm[11:0]</td><td>rs1</td><td>100</td><td>rd</td><td>0010011</td></tr>
+<tr><td>12</td><td>5</td><td>3</td><td>5</td><td>7</td></tr>
+</tbody></table>
+</div>
+
+<hr>
+
+<footer>Updated: 2024-05-03</footer>
+
+
+
+</body></html>
